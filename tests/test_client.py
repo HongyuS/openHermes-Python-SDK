@@ -341,7 +341,7 @@ class TestOpenhermes:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with update_env(**{"OPENHERMES_API_KEY": Omit()}):
+        with update_env(**{"OPENHERMES_PERSONAL_TOKEN": Omit()}):
             client2 = Openhermes(base_url=base_url, api_key=None, _strict_response_validation=True)
 
         with pytest.raises(
@@ -1159,7 +1159,7 @@ class TestAsyncOpenhermes:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with update_env(**{"OPENHERMES_API_KEY": Omit()}):
+        with update_env(**{"OPENHERMES_PERSONAL_TOKEN": Omit()}):
             client2 = AsyncOpenhermes(base_url=base_url, api_key=None, _strict_response_validation=True)
 
         with pytest.raises(

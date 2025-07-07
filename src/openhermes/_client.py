@@ -78,10 +78,10 @@ class Openhermes(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous Openhermes client instance.
 
-        This automatically infers the `api_key` argument from the `OPENHERMES_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `OPENHERMES_PERSONAL_TOKEN` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("OPENHERMES_API_KEY")
+            api_key = os.environ.get("OPENHERMES_PERSONAL_TOKEN")
         self.api_key = api_key
 
         if base_url is None:
@@ -257,10 +257,10 @@ class AsyncOpenhermes(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncOpenhermes client instance.
 
-        This automatically infers the `api_key` argument from the `OPENHERMES_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `OPENHERMES_PERSONAL_TOKEN` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("OPENHERMES_API_KEY")
+            api_key = os.environ.get("OPENHERMES_PERSONAL_TOKEN")
         self.api_key = api_key
 
         if base_url is None:
