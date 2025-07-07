@@ -10,7 +10,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.openeuler.org](https://docs.openeuler.org/zh/docs/24.03_LTS_SP2/tools/ai/index.html). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
