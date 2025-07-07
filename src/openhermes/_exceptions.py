@@ -18,11 +18,11 @@ __all__ = [
 ]
 
 
-class OpenhermesError(Exception):
+class OpenHermesError(Exception):
     pass
 
 
-class APIError(OpenhermesError):
+class APIError(OpenHermesError):
     message: str
     request: httpx.Request
 

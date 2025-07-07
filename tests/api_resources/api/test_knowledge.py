@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import ResponseData, KnowledgeListResponse
 
@@ -19,7 +19,7 @@ class TestKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Openhermes) -> None:
+    def test_method_update(self, client: OpenHermes) -> None:
         knowledge = client.api.knowledge.update(
             conversation_id="conversationId",
         )
@@ -27,7 +27,7 @@ class TestKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_with_all_params(self, client: Openhermes) -> None:
+    def test_method_update_with_all_params(self, client: OpenHermes) -> None:
         knowledge = client.api.knowledge.update(
             conversation_id="conversationId",
             kb_ids=["string"],
@@ -36,7 +36,7 @@ class TestKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: Openhermes) -> None:
+    def test_raw_response_update(self, client: OpenHermes) -> None:
         response = client.api.knowledge.with_raw_response.update(
             conversation_id="conversationId",
         )
@@ -48,7 +48,7 @@ class TestKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: Openhermes) -> None:
+    def test_streaming_response_update(self, client: OpenHermes) -> None:
         with client.api.knowledge.with_streaming_response.update(
             conversation_id="conversationId",
         ) as response:
@@ -62,7 +62,7 @@ class TestKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Openhermes) -> None:
+    def test_method_list(self, client: OpenHermes) -> None:
         knowledge = client.api.knowledge.list(
             conversation_id="conversationId",
         )
@@ -70,7 +70,7 @@ class TestKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: Openhermes) -> None:
+    def test_method_list_with_all_params(self, client: OpenHermes) -> None:
         knowledge = client.api.knowledge.list(
             conversation_id="conversationId",
             kb_id="kbId",
@@ -80,7 +80,7 @@ class TestKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Openhermes) -> None:
+    def test_raw_response_list(self, client: OpenHermes) -> None:
         response = client.api.knowledge.with_raw_response.list(
             conversation_id="conversationId",
         )
@@ -92,7 +92,7 @@ class TestKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Openhermes) -> None:
+    def test_streaming_response_list(self, client: OpenHermes) -> None:
         with client.api.knowledge.with_streaming_response.list(
             conversation_id="conversationId",
         ) as response:
@@ -112,7 +112,7 @@ class TestAsyncKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_update(self, async_client: AsyncOpenHermes) -> None:
         knowledge = await async_client.api.knowledge.update(
             conversation_id="conversationId",
         )
@@ -120,7 +120,7 @@ class TestAsyncKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         knowledge = await async_client.api.knowledge.update(
             conversation_id="conversationId",
             kb_ids=["string"],
@@ -129,7 +129,7 @@ class TestAsyncKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_update(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.knowledge.with_raw_response.update(
             conversation_id="conversationId",
         )
@@ -141,7 +141,7 @@ class TestAsyncKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.knowledge.with_streaming_response.update(
             conversation_id="conversationId",
         ) as response:
@@ -155,7 +155,7 @@ class TestAsyncKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_list(self, async_client: AsyncOpenHermes) -> None:
         knowledge = await async_client.api.knowledge.list(
             conversation_id="conversationId",
         )
@@ -163,7 +163,7 @@ class TestAsyncKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         knowledge = await async_client.api.knowledge.list(
             conversation_id="conversationId",
             kb_id="kbId",
@@ -173,7 +173,7 @@ class TestAsyncKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_list(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.knowledge.with_raw_response.list(
             conversation_id="conversationId",
         )
@@ -185,7 +185,7 @@ class TestAsyncKnowledge:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.knowledge.with_streaming_response.list(
             conversation_id="conversationId",
         ) as response:

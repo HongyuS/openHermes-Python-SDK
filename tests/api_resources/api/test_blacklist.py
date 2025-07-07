@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import ResponseData
 
@@ -19,7 +19,7 @@ class TestBlacklist:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_report_abuse(self, client: Openhermes) -> None:
+    def test_method_report_abuse(self, client: OpenHermes) -> None:
         blacklist = client.api.blacklist.report_abuse(
             reason="reason",
             reason_type="reason_type",
@@ -29,7 +29,7 @@ class TestBlacklist:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_report_abuse(self, client: Openhermes) -> None:
+    def test_raw_response_report_abuse(self, client: OpenHermes) -> None:
         response = client.api.blacklist.with_raw_response.report_abuse(
             reason="reason",
             reason_type="reason_type",
@@ -43,7 +43,7 @@ class TestBlacklist:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_report_abuse(self, client: Openhermes) -> None:
+    def test_streaming_response_report_abuse(self, client: OpenHermes) -> None:
         with client.api.blacklist.with_streaming_response.report_abuse(
             reason="reason",
             reason_type="reason_type",
@@ -65,7 +65,7 @@ class TestAsyncBlacklist:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_report_abuse(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_report_abuse(self, async_client: AsyncOpenHermes) -> None:
         blacklist = await async_client.api.blacklist.report_abuse(
             reason="reason",
             reason_type="reason_type",
@@ -75,7 +75,7 @@ class TestAsyncBlacklist:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_report_abuse(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_report_abuse(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.blacklist.with_raw_response.report_abuse(
             reason="reason",
             reason_type="reason_type",
@@ -89,7 +89,7 @@ class TestAsyncBlacklist:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_report_abuse(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_report_abuse(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.blacklist.with_streaming_response.report_abuse(
             reason="reason",
             reason_type="reason_type",

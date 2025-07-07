@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import (
     McpDeleteResponse,
@@ -25,7 +25,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: Openhermes) -> None:
+    def test_method_delete(self, client: OpenHermes) -> None:
         mcp = client.api.mcp.delete(
             "serviceId",
         )
@@ -33,7 +33,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: Openhermes) -> None:
+    def test_raw_response_delete(self, client: OpenHermes) -> None:
         response = client.api.mcp.with_raw_response.delete(
             "serviceId",
         )
@@ -45,7 +45,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: Openhermes) -> None:
+    def test_streaming_response_delete(self, client: OpenHermes) -> None:
         with client.api.mcp.with_streaming_response.delete(
             "serviceId",
         ) as response:
@@ -59,7 +59,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: Openhermes) -> None:
+    def test_path_params_delete(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
             client.api.mcp.with_raw_response.delete(
                 "",
@@ -67,7 +67,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_activate_or_deactivate(self, client: Openhermes) -> None:
+    def test_method_activate_or_deactivate(self, client: OpenHermes) -> None:
         mcp = client.api.mcp.activate_or_deactivate(
             service_id="",
             active=True,
@@ -76,7 +76,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_activate_or_deactivate(self, client: Openhermes) -> None:
+    def test_raw_response_activate_or_deactivate(self, client: OpenHermes) -> None:
         response = client.api.mcp.with_raw_response.activate_or_deactivate(
             service_id="",
             active=True,
@@ -89,7 +89,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_activate_or_deactivate(self, client: Openhermes) -> None:
+    def test_streaming_response_activate_or_deactivate(self, client: OpenHermes) -> None:
         with client.api.mcp.with_streaming_response.activate_or_deactivate(
             service_id="",
             active=True,
@@ -104,7 +104,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_activate_or_deactivate(self, client: Openhermes) -> None:
+    def test_path_params_activate_or_deactivate(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
             client.api.mcp.with_raw_response.activate_or_deactivate(
                 service_id="",
@@ -113,7 +113,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_or_update(self, client: Openhermes) -> None:
+    def test_method_create_or_update(self, client: OpenHermes) -> None:
         mcp = client.api.mcp.create_or_update(
             config="config",
             description="description",
@@ -123,7 +123,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_or_update_with_all_params(self, client: Openhermes) -> None:
+    def test_method_create_or_update_with_all_params(self, client: OpenHermes) -> None:
         mcp = client.api.mcp.create_or_update(
             config="config",
             description="description",
@@ -136,7 +136,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_or_update(self, client: Openhermes) -> None:
+    def test_raw_response_create_or_update(self, client: OpenHermes) -> None:
         response = client.api.mcp.with_raw_response.create_or_update(
             config="config",
             description="description",
@@ -150,7 +150,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_or_update(self, client: Openhermes) -> None:
+    def test_streaming_response_create_or_update(self, client: OpenHermes) -> None:
         with client.api.mcp.with_streaming_response.create_or_update(
             config="config",
             description="description",
@@ -166,7 +166,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_detail(self, client: Openhermes) -> None:
+    def test_method_get_detail(self, client: OpenHermes) -> None:
         mcp = client.api.mcp.get_detail(
             service_id="",
         )
@@ -174,7 +174,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_detail_with_all_params(self, client: Openhermes) -> None:
+    def test_method_get_detail_with_all_params(self, client: OpenHermes) -> None:
         mcp = client.api.mcp.get_detail(
             service_id="",
             edit=True,
@@ -183,7 +183,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_detail(self, client: Openhermes) -> None:
+    def test_raw_response_get_detail(self, client: OpenHermes) -> None:
         response = client.api.mcp.with_raw_response.get_detail(
             service_id="",
         )
@@ -195,7 +195,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_detail(self, client: Openhermes) -> None:
+    def test_streaming_response_get_detail(self, client: OpenHermes) -> None:
         with client.api.mcp.with_streaming_response.get_detail(
             service_id="",
         ) as response:
@@ -209,7 +209,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_get_detail(self, client: Openhermes) -> None:
+    def test_path_params_get_detail(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
             client.api.mcp.with_raw_response.get_detail(
                 service_id="",
@@ -217,13 +217,13 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_list(self, client: Openhermes) -> None:
+    def test_method_get_list(self, client: OpenHermes) -> None:
         mcp = client.api.mcp.get_list()
         assert_matches_type(McpGetListResponse, mcp, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_list_with_all_params(self, client: Openhermes) -> None:
+    def test_method_get_list_with_all_params(self, client: OpenHermes) -> None:
         mcp = client.api.mcp.get_list(
             is_active=True,
             keyword="keyword",
@@ -235,7 +235,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_list(self, client: Openhermes) -> None:
+    def test_raw_response_get_list(self, client: OpenHermes) -> None:
         response = client.api.mcp.with_raw_response.get_list()
 
         assert response.is_closed is True
@@ -245,7 +245,7 @@ class TestMcp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_list(self, client: Openhermes) -> None:
+    def test_streaming_response_get_list(self, client: OpenHermes) -> None:
         with client.api.mcp.with_streaming_response.get_list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -263,7 +263,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_delete(self, async_client: AsyncOpenHermes) -> None:
         mcp = await async_client.api.mcp.delete(
             "serviceId",
         )
@@ -271,7 +271,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.mcp.with_raw_response.delete(
             "serviceId",
         )
@@ -283,7 +283,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.mcp.with_streaming_response.delete(
             "serviceId",
         ) as response:
@@ -297,7 +297,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_delete(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
             await async_client.api.mcp.with_raw_response.delete(
                 "",
@@ -305,7 +305,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_activate_or_deactivate(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_activate_or_deactivate(self, async_client: AsyncOpenHermes) -> None:
         mcp = await async_client.api.mcp.activate_or_deactivate(
             service_id="",
             active=True,
@@ -314,7 +314,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_activate_or_deactivate(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_activate_or_deactivate(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.mcp.with_raw_response.activate_or_deactivate(
             service_id="",
             active=True,
@@ -327,7 +327,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_activate_or_deactivate(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_activate_or_deactivate(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.mcp.with_streaming_response.activate_or_deactivate(
             service_id="",
             active=True,
@@ -342,7 +342,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_activate_or_deactivate(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_activate_or_deactivate(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
             await async_client.api.mcp.with_raw_response.activate_or_deactivate(
                 service_id="",
@@ -351,7 +351,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_or_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_create_or_update(self, async_client: AsyncOpenHermes) -> None:
         mcp = await async_client.api.mcp.create_or_update(
             config="config",
             description="description",
@@ -361,7 +361,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_or_update_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_create_or_update_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         mcp = await async_client.api.mcp.create_or_update(
             config="config",
             description="description",
@@ -374,7 +374,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_or_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_create_or_update(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.mcp.with_raw_response.create_or_update(
             config="config",
             description="description",
@@ -388,7 +388,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_or_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_create_or_update(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.mcp.with_streaming_response.create_or_update(
             config="config",
             description="description",
@@ -404,7 +404,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_detail(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_detail(self, async_client: AsyncOpenHermes) -> None:
         mcp = await async_client.api.mcp.get_detail(
             service_id="",
         )
@@ -412,7 +412,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_detail_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_detail_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         mcp = await async_client.api.mcp.get_detail(
             service_id="",
             edit=True,
@@ -421,7 +421,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_detail(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_get_detail(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.mcp.with_raw_response.get_detail(
             service_id="",
         )
@@ -433,7 +433,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_detail(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_get_detail(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.mcp.with_streaming_response.get_detail(
             service_id="",
         ) as response:
@@ -447,7 +447,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_get_detail(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_get_detail(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
             await async_client.api.mcp.with_raw_response.get_detail(
                 service_id="",
@@ -455,13 +455,13 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_list(self, async_client: AsyncOpenHermes) -> None:
         mcp = await async_client.api.mcp.get_list()
         assert_matches_type(McpGetListResponse, mcp, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_list_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_list_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         mcp = await async_client.api.mcp.get_list(
             is_active=True,
             keyword="keyword",
@@ -473,7 +473,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_get_list(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.mcp.with_raw_response.get_list()
 
         assert response.is_closed is True
@@ -483,7 +483,7 @@ class TestAsyncMcp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_get_list(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.mcp.with_streaming_response.get_list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

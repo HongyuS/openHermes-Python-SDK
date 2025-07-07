@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import ResponseData
 from openhermes.types.api.blacklist import GetBlacklistQuestionRsp
@@ -20,7 +20,7 @@ class TestAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_change(self, client: Openhermes) -> None:
+    def test_method_change(self, client: OpenHermes) -> None:
         abuse = client.api.blacklist.abuse.change(
             id="id",
             is_deletion=0,
@@ -29,7 +29,7 @@ class TestAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_change(self, client: Openhermes) -> None:
+    def test_raw_response_change(self, client: OpenHermes) -> None:
         response = client.api.blacklist.abuse.with_raw_response.change(
             id="id",
             is_deletion=0,
@@ -42,7 +42,7 @@ class TestAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_change(self, client: Openhermes) -> None:
+    def test_streaming_response_change(self, client: OpenHermes) -> None:
         with client.api.blacklist.abuse.with_streaming_response.change(
             id="id",
             is_deletion=0,
@@ -57,13 +57,13 @@ class TestAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get(self, client: Openhermes) -> None:
+    def test_method_get(self, client: OpenHermes) -> None:
         abuse = client.api.blacklist.abuse.get()
         assert_matches_type(GetBlacklistQuestionRsp, abuse, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_with_all_params(self, client: Openhermes) -> None:
+    def test_method_get_with_all_params(self, client: OpenHermes) -> None:
         abuse = client.api.blacklist.abuse.get(
             page=0,
         )
@@ -71,7 +71,7 @@ class TestAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get(self, client: Openhermes) -> None:
+    def test_raw_response_get(self, client: OpenHermes) -> None:
         response = client.api.blacklist.abuse.with_raw_response.get()
 
         assert response.is_closed is True
@@ -81,7 +81,7 @@ class TestAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get(self, client: Openhermes) -> None:
+    def test_streaming_response_get(self, client: OpenHermes) -> None:
         with client.api.blacklist.abuse.with_streaming_response.get() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -99,7 +99,7 @@ class TestAsyncAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_change(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_change(self, async_client: AsyncOpenHermes) -> None:
         abuse = await async_client.api.blacklist.abuse.change(
             id="id",
             is_deletion=0,
@@ -108,7 +108,7 @@ class TestAsyncAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_change(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_change(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.blacklist.abuse.with_raw_response.change(
             id="id",
             is_deletion=0,
@@ -121,7 +121,7 @@ class TestAsyncAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_change(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_change(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.blacklist.abuse.with_streaming_response.change(
             id="id",
             is_deletion=0,
@@ -136,13 +136,13 @@ class TestAsyncAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get(self, async_client: AsyncOpenHermes) -> None:
         abuse = await async_client.api.blacklist.abuse.get()
         assert_matches_type(GetBlacklistQuestionRsp, abuse, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         abuse = await async_client.api.blacklist.abuse.get(
             page=0,
         )
@@ -150,7 +150,7 @@ class TestAsyncAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_get(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.blacklist.abuse.with_raw_response.get()
 
         assert response.is_closed is True
@@ -160,7 +160,7 @@ class TestAsyncAbuse:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_get(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.blacklist.abuse.with_streaming_response.get() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import ResponseData, DocumentGetListResponse
 
@@ -19,7 +19,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: Openhermes) -> None:
+    def test_method_delete(self, client: OpenHermes) -> None:
         document = client.api.document.delete(
             "document_id",
         )
@@ -27,7 +27,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: Openhermes) -> None:
+    def test_raw_response_delete(self, client: OpenHermes) -> None:
         response = client.api.document.with_raw_response.delete(
             "document_id",
         )
@@ -39,7 +39,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: Openhermes) -> None:
+    def test_streaming_response_delete(self, client: OpenHermes) -> None:
         with client.api.document.with_streaming_response.delete(
             "document_id",
         ) as response:
@@ -53,7 +53,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: Openhermes) -> None:
+    def test_path_params_delete(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `document_id` but received ''"):
             client.api.document.with_raw_response.delete(
                 "",
@@ -61,7 +61,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_list(self, client: Openhermes) -> None:
+    def test_method_get_list(self, client: OpenHermes) -> None:
         document = client.api.document.get_list(
             conversation_id="",
         )
@@ -69,7 +69,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_list_with_all_params(self, client: Openhermes) -> None:
+    def test_method_get_list_with_all_params(self, client: OpenHermes) -> None:
         document = client.api.document.get_list(
             conversation_id="",
             unused=True,
@@ -79,7 +79,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_list(self, client: Openhermes) -> None:
+    def test_raw_response_get_list(self, client: OpenHermes) -> None:
         response = client.api.document.with_raw_response.get_list(
             conversation_id="",
         )
@@ -91,7 +91,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_list(self, client: Openhermes) -> None:
+    def test_streaming_response_get_list(self, client: OpenHermes) -> None:
         with client.api.document.with_streaming_response.get_list(
             conversation_id="",
         ) as response:
@@ -105,7 +105,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_get_list(self, client: Openhermes) -> None:
+    def test_path_params_get_list(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
             client.api.document.with_raw_response.get_list(
                 conversation_id="",
@@ -113,7 +113,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_upload(self, client: Openhermes) -> None:
+    def test_method_upload(self, client: OpenHermes) -> None:
         document = client.api.document.upload(
             conversation_id="",
             documents=[b"raw file contents"],
@@ -122,7 +122,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_upload(self, client: Openhermes) -> None:
+    def test_raw_response_upload(self, client: OpenHermes) -> None:
         response = client.api.document.with_raw_response.upload(
             conversation_id="",
             documents=[b"raw file contents"],
@@ -135,7 +135,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_upload(self, client: Openhermes) -> None:
+    def test_streaming_response_upload(self, client: OpenHermes) -> None:
         with client.api.document.with_streaming_response.upload(
             conversation_id="",
             documents=[b"raw file contents"],
@@ -150,7 +150,7 @@ class TestDocument:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_upload(self, client: Openhermes) -> None:
+    def test_path_params_upload(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
             client.api.document.with_raw_response.upload(
                 conversation_id="",
@@ -165,7 +165,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_delete(self, async_client: AsyncOpenHermes) -> None:
         document = await async_client.api.document.delete(
             "document_id",
         )
@@ -173,7 +173,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.document.with_raw_response.delete(
             "document_id",
         )
@@ -185,7 +185,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.document.with_streaming_response.delete(
             "document_id",
         ) as response:
@@ -199,7 +199,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_delete(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `document_id` but received ''"):
             await async_client.api.document.with_raw_response.delete(
                 "",
@@ -207,7 +207,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_list(self, async_client: AsyncOpenHermes) -> None:
         document = await async_client.api.document.get_list(
             conversation_id="",
         )
@@ -215,7 +215,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_list_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_list_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         document = await async_client.api.document.get_list(
             conversation_id="",
             unused=True,
@@ -225,7 +225,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_get_list(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.document.with_raw_response.get_list(
             conversation_id="",
         )
@@ -237,7 +237,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_get_list(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.document.with_streaming_response.get_list(
             conversation_id="",
         ) as response:
@@ -251,7 +251,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_get_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_get_list(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
             await async_client.api.document.with_raw_response.get_list(
                 conversation_id="",
@@ -259,7 +259,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_upload(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_upload(self, async_client: AsyncOpenHermes) -> None:
         document = await async_client.api.document.upload(
             conversation_id="",
             documents=[b"raw file contents"],
@@ -268,7 +268,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_upload(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_upload(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.document.with_raw_response.upload(
             conversation_id="",
             documents=[b"raw file contents"],
@@ -281,7 +281,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_upload(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_upload(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.document.with_streaming_response.upload(
             conversation_id="",
             documents=[b"raw file contents"],
@@ -296,7 +296,7 @@ class TestAsyncDocument:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_upload(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_upload(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
             await async_client.api.document.with_raw_response.upload(
                 conversation_id="",

@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import AuthUserRsp, AuthRedirectResponse
 
@@ -19,7 +19,7 @@ class TestAuth:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_login(self, client: Openhermes) -> None:
+    def test_method_login(self, client: OpenHermes) -> None:
         auth = client.api.auth.login(
             code="code",
         )
@@ -27,7 +27,7 @@ class TestAuth:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_login(self, client: Openhermes) -> None:
+    def test_raw_response_login(self, client: OpenHermes) -> None:
         response = client.api.auth.with_raw_response.login(
             code="code",
         )
@@ -39,7 +39,7 @@ class TestAuth:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_login(self, client: Openhermes) -> None:
+    def test_streaming_response_login(self, client: OpenHermes) -> None:
         with client.api.auth.with_streaming_response.login(
             code="code",
         ) as response:
@@ -53,13 +53,13 @@ class TestAuth:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_redirect(self, client: Openhermes) -> None:
+    def test_method_redirect(self, client: OpenHermes) -> None:
         auth = client.api.auth.redirect()
         assert_matches_type(AuthRedirectResponse, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_redirect(self, client: Openhermes) -> None:
+    def test_raw_response_redirect(self, client: OpenHermes) -> None:
         response = client.api.auth.with_raw_response.redirect()
 
         assert response.is_closed is True
@@ -69,7 +69,7 @@ class TestAuth:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_redirect(self, client: Openhermes) -> None:
+    def test_streaming_response_redirect(self, client: OpenHermes) -> None:
         with client.api.auth.with_streaming_response.redirect() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -81,13 +81,13 @@ class TestAuth:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve_user(self, client: Openhermes) -> None:
+    def test_method_retrieve_user(self, client: OpenHermes) -> None:
         auth = client.api.auth.retrieve_user()
         assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve_user(self, client: Openhermes) -> None:
+    def test_raw_response_retrieve_user(self, client: OpenHermes) -> None:
         response = client.api.auth.with_raw_response.retrieve_user()
 
         assert response.is_closed is True
@@ -97,7 +97,7 @@ class TestAuth:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve_user(self, client: Openhermes) -> None:
+    def test_streaming_response_retrieve_user(self, client: OpenHermes) -> None:
         with client.api.auth.with_streaming_response.retrieve_user() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -109,13 +109,13 @@ class TestAuth:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_revision(self, client: Openhermes) -> None:
+    def test_method_update_revision(self, client: OpenHermes) -> None:
         auth = client.api.auth.update_revision()
         assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update_revision(self, client: Openhermes) -> None:
+    def test_raw_response_update_revision(self, client: OpenHermes) -> None:
         response = client.api.auth.with_raw_response.update_revision()
 
         assert response.is_closed is True
@@ -125,7 +125,7 @@ class TestAuth:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update_revision(self, client: Openhermes) -> None:
+    def test_streaming_response_update_revision(self, client: OpenHermes) -> None:
         with client.api.auth.with_streaming_response.update_revision() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -143,7 +143,7 @@ class TestAsyncAuth:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_login(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_login(self, async_client: AsyncOpenHermes) -> None:
         auth = await async_client.api.auth.login(
             code="code",
         )
@@ -151,7 +151,7 @@ class TestAsyncAuth:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_login(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_login(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.auth.with_raw_response.login(
             code="code",
         )
@@ -163,7 +163,7 @@ class TestAsyncAuth:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_login(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_login(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.auth.with_streaming_response.login(
             code="code",
         ) as response:
@@ -177,13 +177,13 @@ class TestAsyncAuth:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_redirect(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_redirect(self, async_client: AsyncOpenHermes) -> None:
         auth = await async_client.api.auth.redirect()
         assert_matches_type(AuthRedirectResponse, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_redirect(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_redirect(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.auth.with_raw_response.redirect()
 
         assert response.is_closed is True
@@ -193,7 +193,7 @@ class TestAsyncAuth:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_redirect(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_redirect(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.auth.with_streaming_response.redirect() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -205,13 +205,13 @@ class TestAsyncAuth:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve_user(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_retrieve_user(self, async_client: AsyncOpenHermes) -> None:
         auth = await async_client.api.auth.retrieve_user()
         assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve_user(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_retrieve_user(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.auth.with_raw_response.retrieve_user()
 
         assert response.is_closed is True
@@ -221,7 +221,7 @@ class TestAsyncAuth:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve_user(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_retrieve_user(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.auth.with_streaming_response.retrieve_user() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -233,13 +233,13 @@ class TestAsyncAuth:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_revision(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_update_revision(self, async_client: AsyncOpenHermes) -> None:
         auth = await async_client.api.auth.update_revision()
         assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update_revision(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_update_revision(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.auth.with_raw_response.update_revision()
 
         assert response.is_closed is True
@@ -249,7 +249,7 @@ class TestAsyncAuth:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update_revision(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_update_revision(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.auth.with_streaming_response.update_revision() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
