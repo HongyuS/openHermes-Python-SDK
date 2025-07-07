@@ -21,7 +21,7 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from openhermes import Openhermes, AsyncOpenhermes, APIResponseValidationError
+from openhermes import OpenHermes, AsyncOpenHermes, APIResponseValidationError
 from openhermes._types import Omit
 from openhermes._models import BaseModel, FinalRequestOptions
 from openhermes._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
@@ -50,7 +50,7 @@ def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
     return 0.1
 
 
-def _get_open_connections(client: Openhermes | AsyncOpenhermes) -> int:
+def _get_open_connections(client: OpenHermes | AsyncOpenHermes) -> int:
     transport = client._client._transport
     assert isinstance(transport, httpx.HTTPTransport) or isinstance(transport, httpx.AsyncHTTPTransport)
 
@@ -58,8 +58,8 @@ def _get_open_connections(client: Openhermes | AsyncOpenhermes) -> int:
     return len(pool._requests)
 
 
-class TestOpenhermes:
-    client = Openhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestOpenHermes:
+    client = OpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -106,7 +106,7 @@ class TestOpenhermes:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = Openhermes(
+        client = OpenHermes(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -140,7 +140,7 @@ class TestOpenhermes:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = Openhermes(
+        client = OpenHermes(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -266,7 +266,7 @@ class TestOpenhermes:
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = Openhermes(
+        client = OpenHermes(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
@@ -277,7 +277,7 @@ class TestOpenhermes:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = Openhermes(
+            client = OpenHermes(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -287,7 +287,7 @@ class TestOpenhermes:
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = Openhermes(
+            client = OpenHermes(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -297,7 +297,7 @@ class TestOpenhermes:
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = Openhermes(
+            client = OpenHermes(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -308,7 +308,7 @@ class TestOpenhermes:
     async def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             async with httpx.AsyncClient() as http_client:
-                Openhermes(
+                OpenHermes(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -316,14 +316,14 @@ class TestOpenhermes:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = Openhermes(
+        client = OpenHermes(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = Openhermes(
+        client2 = OpenHermes(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -337,12 +337,12 @@ class TestOpenhermes:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = Openhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = OpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with update_env(**{"OPENHERMES_API_KEY": Omit()}):
-            client2 = Openhermes(base_url=base_url, api_key=None, _strict_response_validation=True)
+            client2 = OpenHermes(base_url=base_url, api_key=None, _strict_response_validation=True)
 
         with pytest.raises(
             TypeError,
@@ -356,7 +356,7 @@ class TestOpenhermes:
         assert request2.headers.get("Authorization") is None
 
     def test_default_query_option(self) -> None:
-        client = Openhermes(
+        client = OpenHermes(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -470,7 +470,7 @@ class TestOpenhermes:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, client: Openhermes) -> None:
+    def test_multipart_repeating_array(self, client: OpenHermes) -> None:
         request = client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -557,7 +557,7 @@ class TestOpenhermes:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = Openhermes(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
+        client = OpenHermes(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -566,16 +566,16 @@ class TestOpenhermes:
 
     def test_base_url_env(self) -> None:
         with update_env(OPENHERMES_BASE_URL="http://localhost:5000/from/env"):
-            client = Openhermes(api_key=api_key, _strict_response_validation=True)
+            client = OpenHermes(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            Openhermes(
+            OpenHermes(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            Openhermes(
+            OpenHermes(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -584,7 +584,7 @@ class TestOpenhermes:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: Openhermes) -> None:
+    def test_base_url_trailing_slash(self, client: OpenHermes) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -597,10 +597,10 @@ class TestOpenhermes:
     @pytest.mark.parametrize(
         "client",
         [
-            Openhermes(
+            OpenHermes(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            Openhermes(
+            OpenHermes(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -609,7 +609,7 @@ class TestOpenhermes:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: Openhermes) -> None:
+    def test_base_url_no_trailing_slash(self, client: OpenHermes) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -622,10 +622,10 @@ class TestOpenhermes:
     @pytest.mark.parametrize(
         "client",
         [
-            Openhermes(
+            OpenHermes(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            Openhermes(
+            OpenHermes(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -634,7 +634,7 @@ class TestOpenhermes:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: Openhermes) -> None:
+    def test_absolute_request_url(self, client: OpenHermes) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -645,7 +645,7 @@ class TestOpenhermes:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = Openhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = OpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -656,7 +656,7 @@ class TestOpenhermes:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = Openhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = OpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -677,7 +677,7 @@ class TestOpenhermes:
 
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            Openhermes(
+            OpenHermes(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
@@ -688,12 +688,12 @@ class TestOpenhermes:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = Openhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = OpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = Openhermes(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = OpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -721,7 +721,7 @@ class TestOpenhermes:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = Openhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = OpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -730,7 +730,7 @@ class TestOpenhermes:
 
     @mock.patch("openhermes._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Openhermes) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: OpenHermes) -> None:
         respx_mock.get("/api/conversation").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
@@ -740,7 +740,7 @@ class TestOpenhermes:
 
     @mock.patch("openhermes._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Openhermes) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: OpenHermes) -> None:
         respx_mock.get("/api/conversation").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
@@ -753,7 +753,7 @@ class TestOpenhermes:
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     def test_retries_taken(
         self,
-        client: Openhermes,
+        client: OpenHermes,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -782,7 +782,7 @@ class TestOpenhermes:
     @mock.patch("openhermes._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_omit_retry_count_header(
-        self, client: Openhermes, failures_before_success: int, respx_mock: MockRouter
+        self, client: OpenHermes, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -805,7 +805,7 @@ class TestOpenhermes:
     @mock.patch("openhermes._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_overwrite_retry_count_header(
-        self, client: Openhermes, failures_before_success: int, respx_mock: MockRouter
+        self, client: OpenHermes, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -874,8 +874,8 @@ class TestOpenhermes:
         assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"
 
 
-class TestAsyncOpenhermes:
-    client = AsyncOpenhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestAsyncOpenHermes:
+    client = AsyncOpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -924,7 +924,7 @@ class TestAsyncOpenhermes:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = AsyncOpenhermes(
+        client = AsyncOpenHermes(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -958,7 +958,7 @@ class TestAsyncOpenhermes:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = AsyncOpenhermes(
+        client = AsyncOpenHermes(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -1084,7 +1084,7 @@ class TestAsyncOpenhermes:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncOpenhermes(
+        client = AsyncOpenHermes(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
@@ -1095,7 +1095,7 @@ class TestAsyncOpenhermes:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncOpenhermes(
+            client = AsyncOpenHermes(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1105,7 +1105,7 @@ class TestAsyncOpenhermes:
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncOpenhermes(
+            client = AsyncOpenHermes(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1115,7 +1115,7 @@ class TestAsyncOpenhermes:
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncOpenhermes(
+            client = AsyncOpenHermes(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1126,7 +1126,7 @@ class TestAsyncOpenhermes:
     def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             with httpx.Client() as http_client:
-                AsyncOpenhermes(
+                AsyncOpenHermes(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -1134,14 +1134,14 @@ class TestAsyncOpenhermes:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = AsyncOpenhermes(
+        client = AsyncOpenHermes(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = AsyncOpenhermes(
+        client2 = AsyncOpenHermes(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -1155,12 +1155,12 @@ class TestAsyncOpenhermes:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = AsyncOpenhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncOpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with update_env(**{"OPENHERMES_API_KEY": Omit()}):
-            client2 = AsyncOpenhermes(base_url=base_url, api_key=None, _strict_response_validation=True)
+            client2 = AsyncOpenHermes(base_url=base_url, api_key=None, _strict_response_validation=True)
 
         with pytest.raises(
             TypeError,
@@ -1174,7 +1174,7 @@ class TestAsyncOpenhermes:
         assert request2.headers.get("Authorization") is None
 
     def test_default_query_option(self) -> None:
-        client = AsyncOpenhermes(
+        client = AsyncOpenHermes(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1288,7 +1288,7 @@ class TestAsyncOpenhermes:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, async_client: AsyncOpenhermes) -> None:
+    def test_multipart_repeating_array(self, async_client: AsyncOpenHermes) -> None:
         request = async_client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -1375,7 +1375,7 @@ class TestAsyncOpenhermes:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = AsyncOpenhermes(
+        client = AsyncOpenHermes(
             base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -1386,16 +1386,16 @@ class TestAsyncOpenhermes:
 
     def test_base_url_env(self) -> None:
         with update_env(OPENHERMES_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncOpenhermes(api_key=api_key, _strict_response_validation=True)
+            client = AsyncOpenHermes(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncOpenhermes(
+            AsyncOpenHermes(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncOpenhermes(
+            AsyncOpenHermes(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1404,7 +1404,7 @@ class TestAsyncOpenhermes:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: AsyncOpenhermes) -> None:
+    def test_base_url_trailing_slash(self, client: AsyncOpenHermes) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1417,10 +1417,10 @@ class TestAsyncOpenhermes:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncOpenhermes(
+            AsyncOpenHermes(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncOpenhermes(
+            AsyncOpenHermes(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1429,7 +1429,7 @@ class TestAsyncOpenhermes:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: AsyncOpenhermes) -> None:
+    def test_base_url_no_trailing_slash(self, client: AsyncOpenHermes) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1442,10 +1442,10 @@ class TestAsyncOpenhermes:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncOpenhermes(
+            AsyncOpenHermes(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncOpenhermes(
+            AsyncOpenHermes(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1454,7 +1454,7 @@ class TestAsyncOpenhermes:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: AsyncOpenhermes) -> None:
+    def test_absolute_request_url(self, client: AsyncOpenHermes) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1465,7 +1465,7 @@ class TestAsyncOpenhermes:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncOpenhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncOpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1477,7 +1477,7 @@ class TestAsyncOpenhermes:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncOpenhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncOpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1499,7 +1499,7 @@ class TestAsyncOpenhermes:
 
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            AsyncOpenhermes(
+            AsyncOpenHermes(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
@@ -1511,12 +1511,12 @@ class TestAsyncOpenhermes:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncOpenhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = AsyncOpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncOpenhermes(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = AsyncOpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1545,7 +1545,7 @@ class TestAsyncOpenhermes:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncOpenhermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncOpenHermes(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -1555,7 +1555,7 @@ class TestAsyncOpenhermes:
     @mock.patch("openhermes._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(
-        self, respx_mock: MockRouter, async_client: AsyncOpenhermes
+        self, respx_mock: MockRouter, async_client: AsyncOpenHermes
     ) -> None:
         respx_mock.get("/api/conversation").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
@@ -1567,7 +1567,7 @@ class TestAsyncOpenhermes:
     @mock.patch("openhermes._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(
-        self, respx_mock: MockRouter, async_client: AsyncOpenhermes
+        self, respx_mock: MockRouter, async_client: AsyncOpenHermes
     ) -> None:
         respx_mock.get("/api/conversation").mock(return_value=httpx.Response(500))
 
@@ -1582,7 +1582,7 @@ class TestAsyncOpenhermes:
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     async def test_retries_taken(
         self,
-        async_client: AsyncOpenhermes,
+        async_client: AsyncOpenHermes,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -1612,7 +1612,7 @@ class TestAsyncOpenhermes:
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_omit_retry_count_header(
-        self, async_client: AsyncOpenhermes, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncOpenHermes, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -1638,7 +1638,7 @@ class TestAsyncOpenhermes:
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_overwrite_retry_count_header(
-        self, async_client: AsyncOpenhermes, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncOpenHermes, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 

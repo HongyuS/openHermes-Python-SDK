@@ -1,8 +1,8 @@
-# Openhermes Python API library
+# OpenHermes Python API library
 
 [![PyPI version](<https://img.shields.io/pypi/v/openhermes.svg?label=pypi%20(stable)>)](https://pypi.org/project/openhermes/)
 
-The Openhermes Python library provides convenient access to the Openhermes REST API from any Python 3.8+
+The OpenHermes Python library provides convenient access to the OpenHermes REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -27,9 +27,9 @@ pip install git+ssh://git@github.com/HongyuS/openHermes-Python-SDK.git
 The full API of this library can be found in [api.md](api.md).
 
 ```python
-from openhermes import Openhermes
+from openhermes import OpenHermes
 
-client = Openhermes()
+client = OpenHermes()
 
 conversations = client.api.conversation.list()
 print(conversations.code)
@@ -42,13 +42,13 @@ so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncOpenhermes` instead of `Openhermes` and use `await` with each API call:
+Simply import `AsyncOpenHermes` instead of `OpenHermes` and use `await` with each API call:
 
 ```python
 import asyncio
-from openhermes import AsyncOpenhermes
+from openhermes import AsyncOpenHermes
 
-client = AsyncOpenhermes()
+client = AsyncOpenHermes()
 
 
 async def main() -> None:
@@ -77,11 +77,11 @@ Then you can enable it by instantiating the client with `http_client=DefaultAioH
 ```python
 import asyncio
 from openhermes import DefaultAioHttpClient
-from openhermes import AsyncOpenhermes
+from openhermes import AsyncOpenHermes
 
 
 async def main() -> None:
-    async with AsyncOpenhermes(
+    async with AsyncOpenHermes(
         http_client=DefaultAioHttpClient(),
     ) as client:
         conversations = await client.api.conversation.list()
@@ -105,9 +105,9 @@ Typed requests and responses provide autocomplete and documentation within your 
 Nested parameters are dictionaries, typed using `TypedDict`, for example:
 
 ```python
-from openhermes import Openhermes
+from openhermes import OpenHermes
 
-client = Openhermes()
+client = OpenHermes()
 
 response = client.api.chat(
     question="question",
@@ -131,9 +131,9 @@ All errors inherit from `openhermes.APIError`.
 
 ```python
 import openhermes
-from openhermes import Openhermes
+from openhermes import OpenHermes
 
-client = Openhermes()
+client = OpenHermes()
 
 try:
     client.api.conversation.list()
@@ -170,10 +170,10 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from openhermes import Openhermes
+from openhermes import OpenHermes
 
 # Configure the default for all requests:
-client = Openhermes(
+client = OpenHermes(
     # default is 2
     max_retries=0,
 )
@@ -188,16 +188,16 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
-from openhermes import Openhermes
+from openhermes import OpenHermes
 
 # Configure the default for all requests:
-client = Openhermes(
+client = OpenHermes(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = Openhermes(
+client = OpenHermes(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
@@ -240,9 +240,9 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from openhermes import Openhermes
+from openhermes import OpenHermes
 
-client = Openhermes()
+client = OpenHermes()
 response = client.api.conversation.with_raw_response.list()
 print(response.headers.get('X-My-Header'))
 
@@ -314,9 +314,9 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from openhermes import Openhermes, DefaultHttpxClient
+from openhermes import OpenHermes, DefaultHttpxClient
 
-client = Openhermes(
+client = OpenHermes(
     # Or use the `OPENHERMES_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
@@ -337,9 +337,9 @@ client.with_options(http_client=DefaultHttpxClient(...))
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
-from openhermes import Openhermes
+from openhermes import OpenHermes
 
-with Openhermes() as client:
+with OpenHermes() as client:
   # make requests here
   ...
 

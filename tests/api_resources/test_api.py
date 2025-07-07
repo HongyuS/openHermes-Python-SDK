@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types import APIGetRecordResponse
 from openhermes.types.api import ResponseData
@@ -20,7 +20,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_add_comment(self, client: Openhermes) -> None:
+    def test_method_add_comment(self, client: OpenHermes) -> None:
         api = client.api.add_comment(
             comment="liked",
             group_id="group_id",
@@ -30,7 +30,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_add_comment_with_all_params(self, client: Openhermes) -> None:
+    def test_method_add_comment_with_all_params(self, client: OpenHermes) -> None:
         api = client.api.add_comment(
             comment="liked",
             group_id="group_id",
@@ -43,7 +43,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_add_comment(self, client: Openhermes) -> None:
+    def test_raw_response_add_comment(self, client: OpenHermes) -> None:
         response = client.api.with_raw_response.add_comment(
             comment="liked",
             group_id="group_id",
@@ -57,7 +57,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_add_comment(self, client: Openhermes) -> None:
+    def test_streaming_response_add_comment(self, client: OpenHermes) -> None:
         with client.api.with_streaming_response.add_comment(
             comment="liked",
             group_id="group_id",
@@ -73,7 +73,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_chat(self, client: Openhermes) -> None:
+    def test_method_chat(self, client: OpenHermes) -> None:
         api = client.api.chat(
             question="question",
         )
@@ -81,7 +81,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_chat_with_all_params(self, client: Openhermes) -> None:
+    def test_method_chat_with_all_params(self, client: OpenHermes) -> None:
         api = client.api.chat(
             question="question",
             app={
@@ -99,7 +99,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_chat(self, client: Openhermes) -> None:
+    def test_raw_response_chat(self, client: OpenHermes) -> None:
         response = client.api.with_raw_response.chat(
             question="question",
         )
@@ -111,7 +111,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_chat(self, client: Openhermes) -> None:
+    def test_streaming_response_chat(self, client: OpenHermes) -> None:
         with client.api.with_streaming_response.chat(
             question="question",
         ) as response:
@@ -125,7 +125,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_record(self, client: Openhermes) -> None:
+    def test_method_get_record(self, client: OpenHermes) -> None:
         api = client.api.get_record(
             "conversation_id",
         )
@@ -133,7 +133,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_record(self, client: Openhermes) -> None:
+    def test_raw_response_get_record(self, client: OpenHermes) -> None:
         response = client.api.with_raw_response.get_record(
             "conversation_id",
         )
@@ -145,7 +145,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_record(self, client: Openhermes) -> None:
+    def test_streaming_response_get_record(self, client: OpenHermes) -> None:
         with client.api.with_streaming_response.get_record(
             "conversation_id",
         ) as response:
@@ -159,7 +159,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_get_record(self, client: Openhermes) -> None:
+    def test_path_params_get_record(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
             client.api.with_raw_response.get_record(
                 "",
@@ -167,13 +167,13 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_users(self, client: Openhermes) -> None:
+    def test_method_list_users(self, client: OpenHermes) -> None:
         api = client.api.list_users()
         assert_matches_type(object, api, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_users(self, client: Openhermes) -> None:
+    def test_raw_response_list_users(self, client: OpenHermes) -> None:
         response = client.api.with_raw_response.list_users()
 
         assert response.is_closed is True
@@ -183,7 +183,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_users(self, client: Openhermes) -> None:
+    def test_streaming_response_list_users(self, client: OpenHermes) -> None:
         with client.api.with_streaming_response.list_users() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -195,13 +195,13 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_stop_generation(self, client: Openhermes) -> None:
+    def test_method_stop_generation(self, client: OpenHermes) -> None:
         api = client.api.stop_generation()
         assert_matches_type(ResponseData, api, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_stop_generation(self, client: Openhermes) -> None:
+    def test_raw_response_stop_generation(self, client: OpenHermes) -> None:
         response = client.api.with_raw_response.stop_generation()
 
         assert response.is_closed is True
@@ -211,7 +211,7 @@ class TestAPI:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_stop_generation(self, client: Openhermes) -> None:
+    def test_streaming_response_stop_generation(self, client: OpenHermes) -> None:
         with client.api.with_streaming_response.stop_generation() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -229,7 +229,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_add_comment(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_add_comment(self, async_client: AsyncOpenHermes) -> None:
         api = await async_client.api.add_comment(
             comment="liked",
             group_id="group_id",
@@ -239,7 +239,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_add_comment_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_add_comment_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         api = await async_client.api.add_comment(
             comment="liked",
             group_id="group_id",
@@ -252,7 +252,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_add_comment(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_add_comment(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.with_raw_response.add_comment(
             comment="liked",
             group_id="group_id",
@@ -266,7 +266,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_add_comment(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_add_comment(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.with_streaming_response.add_comment(
             comment="liked",
             group_id="group_id",
@@ -282,7 +282,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_chat(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_chat(self, async_client: AsyncOpenHermes) -> None:
         api = await async_client.api.chat(
             question="question",
         )
@@ -290,7 +290,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_chat_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_chat_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         api = await async_client.api.chat(
             question="question",
             app={
@@ -308,7 +308,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_chat(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_chat(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.with_raw_response.chat(
             question="question",
         )
@@ -320,7 +320,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_chat(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_chat(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.with_streaming_response.chat(
             question="question",
         ) as response:
@@ -334,7 +334,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_record(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_record(self, async_client: AsyncOpenHermes) -> None:
         api = await async_client.api.get_record(
             "conversation_id",
         )
@@ -342,7 +342,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_record(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_get_record(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.with_raw_response.get_record(
             "conversation_id",
         )
@@ -354,7 +354,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_record(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_get_record(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.with_streaming_response.get_record(
             "conversation_id",
         ) as response:
@@ -368,7 +368,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_get_record(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_get_record(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
             await async_client.api.with_raw_response.get_record(
                 "",
@@ -376,13 +376,13 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_users(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_list_users(self, async_client: AsyncOpenHermes) -> None:
         api = await async_client.api.list_users()
         assert_matches_type(object, api, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_users(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_list_users(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.with_raw_response.list_users()
 
         assert response.is_closed is True
@@ -392,7 +392,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_users(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_list_users(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.with_streaming_response.list_users() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -404,13 +404,13 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_stop_generation(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_stop_generation(self, async_client: AsyncOpenHermes) -> None:
         api = await async_client.api.stop_generation()
         assert_matches_type(ResponseData, api, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_stop_generation(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_stop_generation(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.with_raw_response.stop_generation()
 
         assert response.is_closed is True
@@ -420,7 +420,7 @@ class TestAsyncAPI:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_stop_generation(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_stop_generation(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.with_streaming_response.stop_generation() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

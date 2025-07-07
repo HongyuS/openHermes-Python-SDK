@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import (
     AppListResponse,
@@ -27,7 +27,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: Openhermes) -> None:
+    def test_method_retrieve(self, client: OpenHermes) -> None:
         app = client.api.app.retrieve(
             "appId",
         )
@@ -35,7 +35,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: Openhermes) -> None:
+    def test_raw_response_retrieve(self, client: OpenHermes) -> None:
         response = client.api.app.with_raw_response.retrieve(
             "appId",
         )
@@ -47,7 +47,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: Openhermes) -> None:
+    def test_streaming_response_retrieve(self, client: OpenHermes) -> None:
         with client.api.app.with_streaming_response.retrieve(
             "appId",
         ) as response:
@@ -61,7 +61,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: Openhermes) -> None:
+    def test_path_params_retrieve(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.api.app.with_raw_response.retrieve(
                 "",
@@ -69,13 +69,13 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Openhermes) -> None:
+    def test_method_list(self, client: OpenHermes) -> None:
         app = client.api.app.list()
         assert_matches_type(AppListResponse, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: Openhermes) -> None:
+    def test_method_list_with_all_params(self, client: OpenHermes) -> None:
         app = client.api.app.list(
             app_type="flow",
             created_by_me=True,
@@ -87,7 +87,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Openhermes) -> None:
+    def test_raw_response_list(self, client: OpenHermes) -> None:
         response = client.api.app.with_raw_response.list()
 
         assert response.is_closed is True
@@ -97,7 +97,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Openhermes) -> None:
+    def test_streaming_response_list(self, client: OpenHermes) -> None:
         with client.api.app.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -109,7 +109,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: Openhermes) -> None:
+    def test_method_delete(self, client: OpenHermes) -> None:
         app = client.api.app.delete(
             "appId",
         )
@@ -117,7 +117,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: Openhermes) -> None:
+    def test_raw_response_delete(self, client: OpenHermes) -> None:
         response = client.api.app.with_raw_response.delete(
             "appId",
         )
@@ -129,7 +129,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: Openhermes) -> None:
+    def test_streaming_response_delete(self, client: OpenHermes) -> None:
         with client.api.app.with_streaming_response.delete(
             "appId",
         ) as response:
@@ -143,7 +143,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: Openhermes) -> None:
+    def test_path_params_delete(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.api.app.with_raw_response.delete(
                 "",
@@ -151,7 +151,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_or_update(self, client: Openhermes) -> None:
+    def test_method_create_or_update(self, client: OpenHermes) -> None:
         app = client.api.app.create_or_update(
             app_type="flow",
             description="description",
@@ -161,7 +161,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_or_update_with_all_params(self, client: Openhermes) -> None:
+    def test_method_create_or_update_with_all_params(self, client: OpenHermes) -> None:
         app = client.api.app.create_or_update(
             app_type="flow",
             description="description",
@@ -194,7 +194,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_or_update(self, client: Openhermes) -> None:
+    def test_raw_response_create_or_update(self, client: OpenHermes) -> None:
         response = client.api.app.with_raw_response.create_or_update(
             app_type="flow",
             description="description",
@@ -208,7 +208,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_or_update(self, client: Openhermes) -> None:
+    def test_streaming_response_create_or_update(self, client: OpenHermes) -> None:
         with client.api.app.with_streaming_response.create_or_update(
             app_type="flow",
             description="description",
@@ -224,13 +224,13 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_recent(self, client: Openhermes) -> None:
+    def test_method_get_recent(self, client: OpenHermes) -> None:
         app = client.api.app.get_recent()
         assert_matches_type(AppGetRecentResponse, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_recent_with_all_params(self, client: Openhermes) -> None:
+    def test_method_get_recent_with_all_params(self, client: OpenHermes) -> None:
         app = client.api.app.get_recent(
             count=1,
         )
@@ -238,7 +238,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_recent(self, client: Openhermes) -> None:
+    def test_raw_response_get_recent(self, client: OpenHermes) -> None:
         response = client.api.app.with_raw_response.get_recent()
 
         assert response.is_closed is True
@@ -248,7 +248,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_recent(self, client: Openhermes) -> None:
+    def test_streaming_response_get_recent(self, client: OpenHermes) -> None:
         with client.api.app.with_streaming_response.get_recent() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -260,7 +260,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_modify_favorite(self, client: Openhermes) -> None:
+    def test_method_modify_favorite(self, client: OpenHermes) -> None:
         app = client.api.app.modify_favorite(
             app_id="",
             favorited=True,
@@ -269,7 +269,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_modify_favorite(self, client: Openhermes) -> None:
+    def test_raw_response_modify_favorite(self, client: OpenHermes) -> None:
         response = client.api.app.with_raw_response.modify_favorite(
             app_id="",
             favorited=True,
@@ -282,7 +282,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_modify_favorite(self, client: Openhermes) -> None:
+    def test_streaming_response_modify_favorite(self, client: OpenHermes) -> None:
         with client.api.app.with_streaming_response.modify_favorite(
             app_id="",
             favorited=True,
@@ -297,7 +297,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_modify_favorite(self, client: Openhermes) -> None:
+    def test_path_params_modify_favorite(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.api.app.with_raw_response.modify_favorite(
                 app_id="",
@@ -306,7 +306,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_publish(self, client: Openhermes) -> None:
+    def test_method_publish(self, client: OpenHermes) -> None:
         app = client.api.app.publish(
             "appId",
         )
@@ -314,7 +314,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_publish(self, client: Openhermes) -> None:
+    def test_raw_response_publish(self, client: OpenHermes) -> None:
         response = client.api.app.with_raw_response.publish(
             "appId",
         )
@@ -326,7 +326,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_publish(self, client: Openhermes) -> None:
+    def test_streaming_response_publish(self, client: OpenHermes) -> None:
         with client.api.app.with_streaming_response.publish(
             "appId",
         ) as response:
@@ -340,7 +340,7 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_publish(self, client: Openhermes) -> None:
+    def test_path_params_publish(self, client: OpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.api.app.with_raw_response.publish(
                 "",
@@ -354,7 +354,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_retrieve(self, async_client: AsyncOpenHermes) -> None:
         app = await async_client.api.app.retrieve(
             "appId",
         )
@@ -362,7 +362,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.app.with_raw_response.retrieve(
             "appId",
         )
@@ -374,7 +374,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.app.with_streaming_response.retrieve(
             "appId",
         ) as response:
@@ -388,7 +388,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.api.app.with_raw_response.retrieve(
                 "",
@@ -396,13 +396,13 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_list(self, async_client: AsyncOpenHermes) -> None:
         app = await async_client.api.app.list()
         assert_matches_type(AppListResponse, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         app = await async_client.api.app.list(
             app_type="flow",
             created_by_me=True,
@@ -414,7 +414,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_list(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.app.with_raw_response.list()
 
         assert response.is_closed is True
@@ -424,7 +424,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.app.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -436,7 +436,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_delete(self, async_client: AsyncOpenHermes) -> None:
         app = await async_client.api.app.delete(
             "appId",
         )
@@ -444,7 +444,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.app.with_raw_response.delete(
             "appId",
         )
@@ -456,7 +456,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.app.with_streaming_response.delete(
             "appId",
         ) as response:
@@ -470,7 +470,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_delete(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.api.app.with_raw_response.delete(
                 "",
@@ -478,7 +478,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_or_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_create_or_update(self, async_client: AsyncOpenHermes) -> None:
         app = await async_client.api.app.create_or_update(
             app_type="flow",
             description="description",
@@ -488,7 +488,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_or_update_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_create_or_update_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         app = await async_client.api.app.create_or_update(
             app_type="flow",
             description="description",
@@ -521,7 +521,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_or_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_create_or_update(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.app.with_raw_response.create_or_update(
             app_type="flow",
             description="description",
@@ -535,7 +535,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_or_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_create_or_update(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.app.with_streaming_response.create_or_update(
             app_type="flow",
             description="description",
@@ -551,13 +551,13 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_recent(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_recent(self, async_client: AsyncOpenHermes) -> None:
         app = await async_client.api.app.get_recent()
         assert_matches_type(AppGetRecentResponse, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_recent_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_recent_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         app = await async_client.api.app.get_recent(
             count=1,
         )
@@ -565,7 +565,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_recent(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_get_recent(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.app.with_raw_response.get_recent()
 
         assert response.is_closed is True
@@ -575,7 +575,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_recent(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_get_recent(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.app.with_streaming_response.get_recent() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -587,7 +587,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_modify_favorite(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_modify_favorite(self, async_client: AsyncOpenHermes) -> None:
         app = await async_client.api.app.modify_favorite(
             app_id="",
             favorited=True,
@@ -596,7 +596,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_modify_favorite(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_modify_favorite(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.app.with_raw_response.modify_favorite(
             app_id="",
             favorited=True,
@@ -609,7 +609,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_modify_favorite(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_modify_favorite(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.app.with_streaming_response.modify_favorite(
             app_id="",
             favorited=True,
@@ -624,7 +624,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_modify_favorite(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_modify_favorite(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.api.app.with_raw_response.modify_favorite(
                 app_id="",
@@ -633,7 +633,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_publish(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_publish(self, async_client: AsyncOpenHermes) -> None:
         app = await async_client.api.app.publish(
             "appId",
         )
@@ -641,7 +641,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_publish(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_publish(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.app.with_raw_response.publish(
             "appId",
         )
@@ -653,7 +653,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_publish(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_publish(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.app.with_streaming_response.publish(
             "appId",
         ) as response:
@@ -667,7 +667,7 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_publish(self, async_client: AsyncOpenhermes) -> None:
+    async def test_path_params_publish(self, async_client: AsyncOpenHermes) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.api.app.with_raw_response.publish(
                 "",

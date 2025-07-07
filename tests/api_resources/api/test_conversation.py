@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import (
     ResponseData,
@@ -24,13 +24,13 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: Openhermes) -> None:
+    def test_method_create(self, client: OpenHermes) -> None:
         conversation = client.api.conversation.create()
         assert_matches_type(ConversationCreateResponse, conversation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: Openhermes) -> None:
+    def test_method_create_with_all_params(self, client: OpenHermes) -> None:
         conversation = client.api.conversation.create(
             app_id="appId",
             debug=True,
@@ -41,7 +41,7 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: Openhermes) -> None:
+    def test_raw_response_create(self, client: OpenHermes) -> None:
         response = client.api.conversation.with_raw_response.create()
 
         assert response.is_closed is True
@@ -51,7 +51,7 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: Openhermes) -> None:
+    def test_streaming_response_create(self, client: OpenHermes) -> None:
         with client.api.conversation.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -63,7 +63,7 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Openhermes) -> None:
+    def test_method_update(self, client: OpenHermes) -> None:
         conversation = client.api.conversation.update(
             conversation_id="conversationId",
             title="x",
@@ -72,7 +72,7 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: Openhermes) -> None:
+    def test_raw_response_update(self, client: OpenHermes) -> None:
         response = client.api.conversation.with_raw_response.update(
             conversation_id="conversationId",
             title="x",
@@ -85,7 +85,7 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: Openhermes) -> None:
+    def test_streaming_response_update(self, client: OpenHermes) -> None:
         with client.api.conversation.with_streaming_response.update(
             conversation_id="conversationId",
             title="x",
@@ -100,13 +100,13 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Openhermes) -> None:
+    def test_method_list(self, client: OpenHermes) -> None:
         conversation = client.api.conversation.list()
         assert_matches_type(ConversationListResponse, conversation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Openhermes) -> None:
+    def test_raw_response_list(self, client: OpenHermes) -> None:
         response = client.api.conversation.with_raw_response.list()
 
         assert response.is_closed is True
@@ -116,7 +116,7 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Openhermes) -> None:
+    def test_streaming_response_list(self, client: OpenHermes) -> None:
         with client.api.conversation.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -128,7 +128,7 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: Openhermes) -> None:
+    def test_method_delete(self, client: OpenHermes) -> None:
         conversation = client.api.conversation.delete(
             conversation_list=["string"],
         )
@@ -136,7 +136,7 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: Openhermes) -> None:
+    def test_raw_response_delete(self, client: OpenHermes) -> None:
         response = client.api.conversation.with_raw_response.delete(
             conversation_list=["string"],
         )
@@ -148,7 +148,7 @@ class TestConversation:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: Openhermes) -> None:
+    def test_streaming_response_delete(self, client: OpenHermes) -> None:
         with client.api.conversation.with_streaming_response.delete(
             conversation_list=["string"],
         ) as response:
@@ -168,13 +168,13 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_create(self, async_client: AsyncOpenHermes) -> None:
         conversation = await async_client.api.conversation.create()
         assert_matches_type(ConversationCreateResponse, conversation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         conversation = await async_client.api.conversation.create(
             app_id="appId",
             debug=True,
@@ -185,7 +185,7 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_create(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.conversation.with_raw_response.create()
 
         assert response.is_closed is True
@@ -195,7 +195,7 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.conversation.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -207,7 +207,7 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_update(self, async_client: AsyncOpenHermes) -> None:
         conversation = await async_client.api.conversation.update(
             conversation_id="conversationId",
             title="x",
@@ -216,7 +216,7 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_update(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.conversation.with_raw_response.update(
             conversation_id="conversationId",
             title="x",
@@ -229,7 +229,7 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.conversation.with_streaming_response.update(
             conversation_id="conversationId",
             title="x",
@@ -244,13 +244,13 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_list(self, async_client: AsyncOpenHermes) -> None:
         conversation = await async_client.api.conversation.list()
         assert_matches_type(ConversationListResponse, conversation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_list(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.conversation.with_raw_response.list()
 
         assert response.is_closed is True
@@ -260,7 +260,7 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.conversation.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -272,7 +272,7 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_delete(self, async_client: AsyncOpenHermes) -> None:
         conversation = await async_client.api.conversation.delete(
             conversation_list=["string"],
         )
@@ -280,7 +280,7 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.conversation.with_raw_response.delete(
             conversation_list=["string"],
         )
@@ -292,7 +292,7 @@ class TestAsyncConversation:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.conversation.with_streaming_response.delete(
             conversation_list=["string"],
         ) as response:

@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import ResponseData
 
@@ -19,13 +19,13 @@ class TestLogout:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get(self, client: Openhermes) -> None:
+    def test_method_get(self, client: OpenHermes) -> None:
         logout = client.api.auth.logout.get()
         assert_matches_type(ResponseData, logout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get(self, client: Openhermes) -> None:
+    def test_raw_response_get(self, client: OpenHermes) -> None:
         response = client.api.auth.logout.with_raw_response.get()
 
         assert response.is_closed is True
@@ -35,7 +35,7 @@ class TestLogout:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get(self, client: Openhermes) -> None:
+    def test_streaming_response_get(self, client: OpenHermes) -> None:
         with client.api.auth.logout.with_streaming_response.get() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -47,7 +47,7 @@ class TestLogout:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_post(self, client: Openhermes) -> None:
+    def test_method_post(self, client: OpenHermes) -> None:
         logout = client.api.auth.logout.post(
             token="token",
         )
@@ -55,7 +55,7 @@ class TestLogout:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_post(self, client: Openhermes) -> None:
+    def test_raw_response_post(self, client: OpenHermes) -> None:
         response = client.api.auth.logout.with_raw_response.post(
             token="token",
         )
@@ -67,7 +67,7 @@ class TestLogout:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_post(self, client: Openhermes) -> None:
+    def test_streaming_response_post(self, client: OpenHermes) -> None:
         with client.api.auth.logout.with_streaming_response.post(
             token="token",
         ) as response:
@@ -87,13 +87,13 @@ class TestAsyncLogout:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get(self, async_client: AsyncOpenHermes) -> None:
         logout = await async_client.api.auth.logout.get()
         assert_matches_type(ResponseData, logout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_get(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.auth.logout.with_raw_response.get()
 
         assert response.is_closed is True
@@ -103,7 +103,7 @@ class TestAsyncLogout:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_get(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.auth.logout.with_streaming_response.get() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -115,7 +115,7 @@ class TestAsyncLogout:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_post(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_post(self, async_client: AsyncOpenHermes) -> None:
         logout = await async_client.api.auth.logout.post(
             token="token",
         )
@@ -123,7 +123,7 @@ class TestAsyncLogout:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_post(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_post(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.auth.logout.with_raw_response.post(
             token="token",
         )
@@ -135,7 +135,7 @@ class TestAsyncLogout:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_post(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_post(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.auth.logout.with_streaming_response.post(
             token="token",
         ) as response:

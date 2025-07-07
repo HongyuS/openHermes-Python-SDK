@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import (
     FlowGetResponse,
@@ -24,7 +24,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Openhermes) -> None:
+    def test_method_update(self, client: OpenHermes) -> None:
         flow = client.api.flow.update(
             app_id="appId",
             flow_id="flowId",
@@ -34,7 +34,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_with_all_params(self, client: Openhermes) -> None:
+    def test_method_update_with_all_params(self, client: OpenHermes) -> None:
         flow = client.api.flow.update(
             app_id="appId",
             flow_id="flowId",
@@ -87,7 +87,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: Openhermes) -> None:
+    def test_raw_response_update(self, client: OpenHermes) -> None:
         response = client.api.flow.with_raw_response.update(
             app_id="appId",
             flow_id="flowId",
@@ -101,7 +101,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: Openhermes) -> None:
+    def test_streaming_response_update(self, client: OpenHermes) -> None:
         with client.api.flow.with_streaming_response.update(
             app_id="appId",
             flow_id="flowId",
@@ -117,7 +117,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: Openhermes) -> None:
+    def test_method_delete(self, client: OpenHermes) -> None:
         flow = client.api.flow.delete(
             app_id="appId",
             flow_id="flowId",
@@ -126,7 +126,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: Openhermes) -> None:
+    def test_raw_response_delete(self, client: OpenHermes) -> None:
         response = client.api.flow.with_raw_response.delete(
             app_id="appId",
             flow_id="flowId",
@@ -139,7 +139,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: Openhermes) -> None:
+    def test_streaming_response_delete(self, client: OpenHermes) -> None:
         with client.api.flow.with_streaming_response.delete(
             app_id="appId",
             flow_id="flowId",
@@ -154,7 +154,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get(self, client: Openhermes) -> None:
+    def test_method_get(self, client: OpenHermes) -> None:
         flow = client.api.flow.get(
             app_id="appId",
             flow_id="flowId",
@@ -163,7 +163,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get(self, client: Openhermes) -> None:
+    def test_raw_response_get(self, client: OpenHermes) -> None:
         response = client.api.flow.with_raw_response.get(
             app_id="appId",
             flow_id="flowId",
@@ -176,7 +176,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get(self, client: Openhermes) -> None:
+    def test_streaming_response_get(self, client: OpenHermes) -> None:
         with client.api.flow.with_streaming_response.get(
             app_id="appId",
             flow_id="flowId",
@@ -191,13 +191,13 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_services(self, client: Openhermes) -> None:
+    def test_method_get_services(self, client: OpenHermes) -> None:
         flow = client.api.flow.get_services()
         assert_matches_type(FlowGetServicesResponse, flow, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_services(self, client: Openhermes) -> None:
+    def test_raw_response_get_services(self, client: OpenHermes) -> None:
         response = client.api.flow.with_raw_response.get_services()
 
         assert response.is_closed is True
@@ -207,7 +207,7 @@ class TestFlow:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_services(self, client: Openhermes) -> None:
+    def test_streaming_response_get_services(self, client: OpenHermes) -> None:
         with client.api.flow.with_streaming_response.get_services() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -225,7 +225,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_update(self, async_client: AsyncOpenHermes) -> None:
         flow = await async_client.api.flow.update(
             app_id="appId",
             flow_id="flowId",
@@ -235,7 +235,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncOpenHermes) -> None:
         flow = await async_client.api.flow.update(
             app_id="appId",
             flow_id="flowId",
@@ -288,7 +288,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_update(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.flow.with_raw_response.update(
             app_id="appId",
             flow_id="flowId",
@@ -302,7 +302,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.flow.with_streaming_response.update(
             app_id="appId",
             flow_id="flowId",
@@ -318,7 +318,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_delete(self, async_client: AsyncOpenHermes) -> None:
         flow = await async_client.api.flow.delete(
             app_id="appId",
             flow_id="flowId",
@@ -327,7 +327,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.flow.with_raw_response.delete(
             app_id="appId",
             flow_id="flowId",
@@ -340,7 +340,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.flow.with_streaming_response.delete(
             app_id="appId",
             flow_id="flowId",
@@ -355,7 +355,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get(self, async_client: AsyncOpenHermes) -> None:
         flow = await async_client.api.flow.get(
             app_id="appId",
             flow_id="flowId",
@@ -364,7 +364,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_get(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.flow.with_raw_response.get(
             app_id="appId",
             flow_id="flowId",
@@ -377,7 +377,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_get(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.flow.with_streaming_response.get(
             app_id="appId",
             flow_id="flowId",
@@ -392,13 +392,13 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_services(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_get_services(self, async_client: AsyncOpenHermes) -> None:
         flow = await async_client.api.flow.get_services()
         assert_matches_type(FlowGetServicesResponse, flow, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_services(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_get_services(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.flow.with_raw_response.get_services()
 
         assert response.is_closed is True
@@ -408,7 +408,7 @@ class TestAsyncFlow:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_services(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_get_services(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.flow.with_streaming_response.get_services() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

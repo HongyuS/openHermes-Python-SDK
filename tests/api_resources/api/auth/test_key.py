@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from openhermes import Openhermes, AsyncOpenhermes
+from openhermes import OpenHermes, AsyncOpenHermes
 from tests.utils import assert_matches_type
 from openhermes.types.api.auth import KeyCheckResponse, KeyManageResponse
 
@@ -19,13 +19,13 @@ class TestKey:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_check(self, client: Openhermes) -> None:
+    def test_method_check(self, client: OpenHermes) -> None:
         key = client.api.auth.key.check()
         assert_matches_type(KeyCheckResponse, key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_check(self, client: Openhermes) -> None:
+    def test_raw_response_check(self, client: OpenHermes) -> None:
         response = client.api.auth.key.with_raw_response.check()
 
         assert response.is_closed is True
@@ -35,7 +35,7 @@ class TestKey:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_check(self, client: Openhermes) -> None:
+    def test_streaming_response_check(self, client: OpenHermes) -> None:
         with client.api.auth.key.with_streaming_response.check() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -47,7 +47,7 @@ class TestKey:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_manage(self, client: Openhermes) -> None:
+    def test_method_manage(self, client: OpenHermes) -> None:
         key = client.api.auth.key.manage(
             action="action",
         )
@@ -55,7 +55,7 @@ class TestKey:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_manage(self, client: Openhermes) -> None:
+    def test_raw_response_manage(self, client: OpenHermes) -> None:
         response = client.api.auth.key.with_raw_response.manage(
             action="action",
         )
@@ -67,7 +67,7 @@ class TestKey:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_manage(self, client: Openhermes) -> None:
+    def test_streaming_response_manage(self, client: OpenHermes) -> None:
         with client.api.auth.key.with_streaming_response.manage(
             action="action",
         ) as response:
@@ -87,13 +87,13 @@ class TestAsyncKey:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_check(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_check(self, async_client: AsyncOpenHermes) -> None:
         key = await async_client.api.auth.key.check()
         assert_matches_type(KeyCheckResponse, key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_check(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_check(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.auth.key.with_raw_response.check()
 
         assert response.is_closed is True
@@ -103,7 +103,7 @@ class TestAsyncKey:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_check(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_check(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.auth.key.with_streaming_response.check() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -115,7 +115,7 @@ class TestAsyncKey:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_manage(self, async_client: AsyncOpenhermes) -> None:
+    async def test_method_manage(self, async_client: AsyncOpenHermes) -> None:
         key = await async_client.api.auth.key.manage(
             action="action",
         )
@@ -123,7 +123,7 @@ class TestAsyncKey:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_manage(self, async_client: AsyncOpenhermes) -> None:
+    async def test_raw_response_manage(self, async_client: AsyncOpenHermes) -> None:
         response = await async_client.api.auth.key.with_raw_response.manage(
             action="action",
         )
@@ -135,7 +135,7 @@ class TestAsyncKey:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_manage(self, async_client: AsyncOpenhermes) -> None:
+    async def test_streaming_response_manage(self, async_client: AsyncOpenHermes) -> None:
         async with async_client.api.auth.key.with_streaming_response.manage(
             action="action",
         ) as response:

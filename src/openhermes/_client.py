@@ -37,18 +37,18 @@ __all__ = [
     "Transport",
     "ProxiesTypes",
     "RequestOptions",
-    "Openhermes",
-    "AsyncOpenhermes",
+    "OpenHermes",
+    "AsyncOpenHermes",
     "Client",
     "AsyncClient",
 ]
 
 
-class Openhermes(SyncAPIClient):
+class OpenHermes(SyncAPIClient):
     api: api.APIResource
     health_check: health_check.HealthCheckResource
-    with_raw_response: OpenhermesWithRawResponse
-    with_streaming_response: OpenhermesWithStreamedResponse
+    with_raw_response: OpenHermesWithRawResponse
+    with_streaming_response: OpenHermesWithStreamedResponse
 
     # client options
     api_key: str | None
@@ -76,7 +76,7 @@ class Openhermes(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous Openhermes client instance.
+        """Construct a new synchronous OpenHermes client instance.
 
         This automatically infers the `api_key` argument from the `OPENHERMES_API_KEY` environment variable if it is not provided.
         """
@@ -102,8 +102,8 @@ class Openhermes(SyncAPIClient):
 
         self.api = api.APIResource(self)
         self.health_check = health_check.HealthCheckResource(self)
-        self.with_raw_response = OpenhermesWithRawResponse(self)
-        self.with_streaming_response = OpenhermesWithStreamedResponse(self)
+        self.with_raw_response = OpenHermesWithRawResponse(self)
+        self.with_streaming_response = OpenHermesWithStreamedResponse(self)
 
     @property
     @override
@@ -223,11 +223,11 @@ class Openhermes(SyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class AsyncOpenhermes(AsyncAPIClient):
+class AsyncOpenHermes(AsyncAPIClient):
     api: api.AsyncAPIResource
     health_check: health_check.AsyncHealthCheckResource
-    with_raw_response: AsyncOpenhermesWithRawResponse
-    with_streaming_response: AsyncOpenhermesWithStreamedResponse
+    with_raw_response: AsyncOpenHermesWithRawResponse
+    with_streaming_response: AsyncOpenHermesWithStreamedResponse
 
     # client options
     api_key: str | None
@@ -255,7 +255,7 @@ class AsyncOpenhermes(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async AsyncOpenhermes client instance.
+        """Construct a new async AsyncOpenHermes client instance.
 
         This automatically infers the `api_key` argument from the `OPENHERMES_API_KEY` environment variable if it is not provided.
         """
@@ -281,8 +281,8 @@ class AsyncOpenhermes(AsyncAPIClient):
 
         self.api = api.AsyncAPIResource(self)
         self.health_check = health_check.AsyncHealthCheckResource(self)
-        self.with_raw_response = AsyncOpenhermesWithRawResponse(self)
-        self.with_streaming_response = AsyncOpenhermesWithStreamedResponse(self)
+        self.with_raw_response = AsyncOpenHermesWithRawResponse(self)
+        self.with_streaming_response = AsyncOpenHermesWithStreamedResponse(self)
 
     @property
     @override
@@ -402,30 +402,30 @@ class AsyncOpenhermes(AsyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class OpenhermesWithRawResponse:
-    def __init__(self, client: Openhermes) -> None:
+class OpenHermesWithRawResponse:
+    def __init__(self, client: OpenHermes) -> None:
         self.api = api.APIResourceWithRawResponse(client.api)
         self.health_check = health_check.HealthCheckResourceWithRawResponse(client.health_check)
 
 
-class AsyncOpenhermesWithRawResponse:
-    def __init__(self, client: AsyncOpenhermes) -> None:
+class AsyncOpenHermesWithRawResponse:
+    def __init__(self, client: AsyncOpenHermes) -> None:
         self.api = api.AsyncAPIResourceWithRawResponse(client.api)
         self.health_check = health_check.AsyncHealthCheckResourceWithRawResponse(client.health_check)
 
 
-class OpenhermesWithStreamedResponse:
-    def __init__(self, client: Openhermes) -> None:
+class OpenHermesWithStreamedResponse:
+    def __init__(self, client: OpenHermes) -> None:
         self.api = api.APIResourceWithStreamingResponse(client.api)
         self.health_check = health_check.HealthCheckResourceWithStreamingResponse(client.health_check)
 
 
-class AsyncOpenhermesWithStreamedResponse:
-    def __init__(self, client: AsyncOpenhermes) -> None:
+class AsyncOpenHermesWithStreamedResponse:
+    def __init__(self, client: AsyncOpenHermes) -> None:
         self.api = api.AsyncAPIResourceWithStreamingResponse(client.api)
         self.health_check = health_check.AsyncHealthCheckResourceWithStreamingResponse(client.health_check)
 
 
-Client = Openhermes
+Client = OpenHermes
 
-AsyncClient = AsyncOpenhermes
+AsyncClient = AsyncOpenHermes
