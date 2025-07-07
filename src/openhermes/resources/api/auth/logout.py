@@ -28,7 +28,7 @@ class LogoutResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#accessing-raw-response-data-eg-headers
         """
         return LogoutResourceWithRawResponse(self)
 
@@ -37,7 +37,7 @@ class LogoutResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#with_streaming_response
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#with_streaming_response
         """
         return LogoutResourceWithStreamingResponse(self)
 
@@ -103,7 +103,7 @@ class AsyncLogoutResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#accessing-raw-response-data-eg-headers
         """
         return AsyncLogoutResourceWithRawResponse(self)
 
@@ -112,7 +112,7 @@ class AsyncLogoutResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#with_streaming_response
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#with_streaming_response
         """
         return AsyncLogoutResourceWithStreamingResponse(self)
 
