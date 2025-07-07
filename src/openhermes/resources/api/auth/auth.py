@@ -32,7 +32,7 @@ from ...._response import (
 )
 from ....types.api import auth_login_params
 from ...._base_client import make_request_options
-from ....types.api.auth_user import AuthUser
+from ....types.api.auth_user_rsp import AuthUserRsp
 from ....types.api.auth_redirect_response import AuthRedirectResponse
 
 __all__ = ["AuthResource", "AsyncAuthResource"]
@@ -131,14 +131,14 @@ class AuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuthUser:
+    ) -> AuthUserRsp:
         """获取用户信息"""
         return self._get(
             "/api/auth/user",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AuthUser,
+            cast_to=AuthUserRsp,
         )
 
     def update_revision(
@@ -150,14 +150,14 @@ class AuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuthUser:
+    ) -> AuthUserRsp:
         """更新用户协议信息"""
         return self._post(
             "/api/auth/update_revision_number",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AuthUser,
+            cast_to=AuthUserRsp,
         )
 
 
@@ -254,14 +254,14 @@ class AsyncAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuthUser:
+    ) -> AuthUserRsp:
         """获取用户信息"""
         return await self._get(
             "/api/auth/user",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AuthUser,
+            cast_to=AuthUserRsp,
         )
 
     async def update_revision(
@@ -273,14 +273,14 @@ class AsyncAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuthUser:
+    ) -> AuthUserRsp:
         """更新用户协议信息"""
         return await self._post(
             "/api/auth/update_revision_number",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AuthUser,
+            cast_to=AuthUserRsp,
         )
 
 

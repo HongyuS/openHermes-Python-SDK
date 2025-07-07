@@ -9,7 +9,7 @@ from ..._models import BaseModel
 from .response_data import ResponseData
 
 __all__ = [
-    "AppListRecentResponse",
+    "AppGetRecentResponse",
     "GetRecentAppListRsp",
     "GetRecentAppListRspResult",
     "GetRecentAppListRspResultApplication",
@@ -38,4 +38,4 @@ class GetRecentAppListRsp(BaseModel):
     """GET /api/app/recent Result 数据结构"""
 
 
-AppListRecentResponse: TypeAlias = Union[GetRecentAppListRsp, ResponseData]
+AppGetRecentResponse: TypeAlias = Union[GetRecentAppListRsp, ResponseData]

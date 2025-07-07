@@ -17,7 +17,7 @@ from ...._response import (
 from ...._base_client import make_request_options
 from ....types.api.blacklist import question_get_params, question_change_params
 from ....types.api.response_data import ResponseData
-from ....types.api.blacklist.get_blacklist_question import GetBlacklistQuestion
+from ....types.api.blacklist.get_blacklist_question_rsp import GetBlacklistQuestionRsp
 
 __all__ = ["QuestionResource", "AsyncQuestionResource"]
 
@@ -95,7 +95,7 @@ class QuestionResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GetBlacklistQuestion:
+    ) -> GetBlacklistQuestionRsp:
         """
         获取黑名单问题
 
@@ -119,7 +119,7 @@ class QuestionResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, question_get_params.QuestionGetParams),
             ),
-            cast_to=GetBlacklistQuestion,
+            cast_to=GetBlacklistQuestionRsp,
         )
 
 
@@ -196,7 +196,7 @@ class AsyncQuestionResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GetBlacklistQuestion:
+    ) -> GetBlacklistQuestionRsp:
         """
         获取黑名单问题
 
@@ -220,7 +220,7 @@ class AsyncQuestionResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"page": page}, question_get_params.QuestionGetParams),
             ),
-            cast_to=GetBlacklistQuestion,
+            cast_to=GetBlacklistQuestionRsp,
         )
 
 

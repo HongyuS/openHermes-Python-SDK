@@ -2,7 +2,7 @@
 
 from ..._models import BaseModel
 
-__all__ = ["AuthUser", "Result"]
+__all__ = ["AuthUserRsp", "Result"]
 
 
 class Result(BaseModel):
@@ -13,7 +13,7 @@ class Result(BaseModel):
     user_sub: str
 
 
-class AuthUser(BaseModel):
+class AuthUserRsp(BaseModel):
     code: int
 
     message: str

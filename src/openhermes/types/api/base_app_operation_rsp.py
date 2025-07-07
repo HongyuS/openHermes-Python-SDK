@@ -4,7 +4,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["BaseAppOperation", "Result"]
+__all__ = ["BaseAppOperationRsp", "Result"]
 
 
 class Result(BaseModel):
@@ -12,7 +12,7 @@ class Result(BaseModel):
     """应用 ID"""
 
 
-class BaseAppOperation(BaseModel):
+class BaseAppOperationRsp(BaseModel):
     code: int
 
     message: str

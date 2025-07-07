@@ -4,9 +4,9 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["BaseMcpServiceOperation"]
+__all__ = ["BaseMcpServiceOperationMsg"]
 
 
-class BaseMcpServiceOperation(BaseModel):
+class BaseMcpServiceOperationMsg(BaseModel):
     service_id: str = FieldInfo(alias="serviceId")
     """服务 ID"""

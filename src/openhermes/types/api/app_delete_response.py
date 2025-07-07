@@ -4,8 +4,8 @@ from typing import Union
 from typing_extensions import TypeAlias
 
 from .response_data import ResponseData
-from .base_app_operation import BaseAppOperation
+from .base_app_operation_rsp import BaseAppOperationRsp
 
 __all__ = ["AppDeleteResponse"]
 
-AppDeleteResponse: TypeAlias = Union[BaseAppOperation, ResponseData]
+AppDeleteResponse: TypeAlias = Union[BaseAppOperationRsp, ResponseData]

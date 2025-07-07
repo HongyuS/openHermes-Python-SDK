@@ -40,15 +40,15 @@ Methods:
 Types:
 
 ```python
-from openhermes.types.api import AuthUser, AuthRedirectResponse
+from openhermes.types.api import AuthUserRsp, AuthRedirectResponse
 ```
 
 Methods:
 
 - <code title="get /api/auth/login">client.api.auth.<a href="./src/openhermes/resources/api/auth/auth.py">login</a>(\*\*<a href="src/openhermes/types/api/auth_login_params.py">params</a>) -> object</code>
 - <code title="get /api/auth/redirect">client.api.auth.<a href="./src/openhermes/resources/api/auth/auth.py">redirect</a>() -> <a href="./src/openhermes/types/api/auth_redirect_response.py">AuthRedirectResponse</a></code>
-- <code title="get /api/auth/user">client.api.auth.<a href="./src/openhermes/resources/api/auth/auth.py">retrieve_user</a>() -> <a href="./src/openhermes/types/api/auth_user.py">AuthUser</a></code>
-- <code title="post /api/auth/update_revision_number">client.api.auth.<a href="./src/openhermes/resources/api/auth/auth.py">update_revision</a>() -> <a href="./src/openhermes/types/api/auth_user.py">AuthUser</a></code>
+- <code title="get /api/auth/user">client.api.auth.<a href="./src/openhermes/resources/api/auth/auth.py">retrieve_user</a>() -> <a href="./src/openhermes/types/api/auth_user_rsp.py">AuthUserRsp</a></code>
+- <code title="post /api/auth/update_revision_number">client.api.auth.<a href="./src/openhermes/resources/api/auth/auth.py">update_revision</a>() -> <a href="./src/openhermes/types/api/auth_user_rsp.py">AuthUserRsp</a></code>
 
 ### Logout
 
@@ -80,12 +80,12 @@ from openhermes.types.api import (
     AppLink,
     AppPermissionData,
     AppType,
-    BaseAppOperation,
+    BaseAppOperationRsp,
     AppRetrieveResponse,
     AppListResponse,
     AppDeleteResponse,
     AppCreateOrUpdateResponse,
-    AppListRecentResponse,
+    AppGetRecentResponse,
     AppModifyFavoriteResponse,
 )
 ```
@@ -96,9 +96,9 @@ Methods:
 - <code title="get /api/app">client.api.app.<a href="./src/openhermes/resources/api/app.py">list</a>(\*\*<a href="src/openhermes/types/api/app_list_params.py">params</a>) -> <a href="./src/openhermes/types/api/app_list_response.py">AppListResponse</a></code>
 - <code title="delete /api/app/{appId}">client.api.app.<a href="./src/openhermes/resources/api/app.py">delete</a>(app_id) -> <a href="./src/openhermes/types/api/app_delete_response.py">AppDeleteResponse</a></code>
 - <code title="post /api/app">client.api.app.<a href="./src/openhermes/resources/api/app.py">create_or_update</a>(\*\*<a href="src/openhermes/types/api/app_create_or_update_params.py">params</a>) -> <a href="./src/openhermes/types/api/app_create_or_update_response.py">AppCreateOrUpdateResponse</a></code>
-- <code title="get /api/app/recent">client.api.app.<a href="./src/openhermes/resources/api/app.py">list_recent</a>(\*\*<a href="src/openhermes/types/api/app_list_recent_params.py">params</a>) -> <a href="./src/openhermes/types/api/app_list_recent_response.py">AppListRecentResponse</a></code>
+- <code title="get /api/app/recent">client.api.app.<a href="./src/openhermes/resources/api/app.py">get_recent</a>(\*\*<a href="src/openhermes/types/api/app_get_recent_params.py">params</a>) -> <a href="./src/openhermes/types/api/app_get_recent_response.py">AppGetRecentResponse</a></code>
 - <code title="put /api/app/{appId}">client.api.app.<a href="./src/openhermes/resources/api/app.py">modify_favorite</a>(app_id, \*\*<a href="src/openhermes/types/api/app_modify_favorite_params.py">params</a>) -> <a href="./src/openhermes/types/api/app_modify_favorite_response.py">AppModifyFavoriteResponse</a></code>
-- <code title="post /api/app/{appId}">client.api.app.<a href="./src/openhermes/resources/api/app.py">publish</a>(app_id) -> <a href="./src/openhermes/types/api/base_app_operation.py">BaseAppOperation</a></code>
+- <code title="post /api/app/{appId}">client.api.app.<a href="./src/openhermes/resources/api/app.py">publish</a>(app_id) -> <a href="./src/openhermes/types/api/base_app_operation_rsp.py">BaseAppOperationRsp</a></code>
 
 ## Service
 
@@ -147,20 +147,20 @@ Methods:
 Types:
 
 ```python
-from openhermes.types.api.blacklist import GetBlacklistQuestion
+from openhermes.types.api.blacklist import GetBlacklistQuestionRsp
 ```
 
 Methods:
 
 - <code title="post /api/blacklist/question">client.api.blacklist.question.<a href="./src/openhermes/resources/api/blacklist/question.py">change</a>(\*\*<a href="src/openhermes/types/api/blacklist/question_change_params.py">params</a>) -> <a href="./src/openhermes/types/api/response_data.py">ResponseData</a></code>
-- <code title="get /api/blacklist/question">client.api.blacklist.question.<a href="./src/openhermes/resources/api/blacklist/question.py">get</a>(\*\*<a href="src/openhermes/types/api/blacklist/question_get_params.py">params</a>) -> <a href="./src/openhermes/types/api/blacklist/get_blacklist_question.py">GetBlacklistQuestion</a></code>
+- <code title="get /api/blacklist/question">client.api.blacklist.question.<a href="./src/openhermes/resources/api/blacklist/question.py">get</a>(\*\*<a href="src/openhermes/types/api/blacklist/question_get_params.py">params</a>) -> <a href="./src/openhermes/types/api/blacklist/get_blacklist_question_rsp.py">GetBlacklistQuestionRsp</a></code>
 
 ### Abuse
 
 Methods:
 
 - <code title="post /api/blacklist/abuse">client.api.blacklist.abuse.<a href="./src/openhermes/resources/api/blacklist/abuse.py">change</a>(\*\*<a href="src/openhermes/types/api/blacklist/abuse_change_params.py">params</a>) -> <a href="./src/openhermes/types/api/response_data.py">ResponseData</a></code>
-- <code title="get /api/blacklist/abuse">client.api.blacklist.abuse.<a href="./src/openhermes/resources/api/blacklist/abuse.py">get</a>(\*\*<a href="src/openhermes/types/api/blacklist/abuse_get_params.py">params</a>) -> <a href="./src/openhermes/types/api/blacklist/get_blacklist_question.py">GetBlacklistQuestion</a></code>
+- <code title="get /api/blacklist/abuse">client.api.blacklist.abuse.<a href="./src/openhermes/resources/api/blacklist/abuse.py">get</a>(\*\*<a href="src/openhermes/types/api/blacklist/abuse_get_params.py">params</a>) -> <a href="./src/openhermes/types/api/blacklist/get_blacklist_question_rsp.py">GetBlacklistQuestionRsp</a></code>
 
 ## Document
 
@@ -211,7 +211,7 @@ Types:
 
 ```python
 from openhermes.types.api import (
-    BaseMcpServiceOperation,
+    BaseMcpServiceOperationMsg,
     McpType,
     McpDeleteResponse,
     McpActivateOrDeactivateResponse,
