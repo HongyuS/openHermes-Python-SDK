@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["AppListRecentParams"]
+__all__ = ["AppGetRecentParams"]
 
 
-class AppListRecentParams(TypedDict, total=False):
+class AppGetRecentParams(TypedDict, total=False):
     count: int

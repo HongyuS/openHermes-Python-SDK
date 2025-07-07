@@ -17,7 +17,7 @@ from ...._response import (
 from ...._base_client import make_request_options
 from ....types.api.blacklist import abuse_get_params, abuse_change_params
 from ....types.api.response_data import ResponseData
-from ....types.api.blacklist.get_blacklist_question import GetBlacklistQuestion
+from ....types.api.blacklist.get_blacklist_question_rsp import GetBlacklistQuestionRsp
 
 __all__ = ["AbuseResource", "AsyncAbuseResource"]
 
@@ -29,7 +29,7 @@ class AbuseResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#accessing-raw-response-data-eg-headers
         """
         return AbuseResourceWithRawResponse(self)
 
@@ -38,7 +38,7 @@ class AbuseResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#with_streaming_response
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#with_streaming_response
         """
         return AbuseResourceWithStreamingResponse(self)
 
@@ -91,7 +91,7 @@ class AbuseResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GetBlacklistQuestion:
+    ) -> GetBlacklistQuestionRsp:
         """
         获取待审核的问答对
 
@@ -113,7 +113,7 @@ class AbuseResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, abuse_get_params.AbuseGetParams),
             ),
-            cast_to=GetBlacklistQuestion,
+            cast_to=GetBlacklistQuestionRsp,
         )
 
 
@@ -124,7 +124,7 @@ class AsyncAbuseResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#accessing-raw-response-data-eg-headers
         """
         return AsyncAbuseResourceWithRawResponse(self)
 
@@ -133,7 +133,7 @@ class AsyncAbuseResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#with_streaming_response
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#with_streaming_response
         """
         return AsyncAbuseResourceWithStreamingResponse(self)
 
@@ -186,7 +186,7 @@ class AsyncAbuseResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GetBlacklistQuestion:
+    ) -> GetBlacklistQuestionRsp:
         """
         获取待审核的问答对
 
@@ -208,7 +208,7 @@ class AsyncAbuseResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"page": page}, abuse_get_params.AbuseGetParams),
             ),
-            cast_to=GetBlacklistQuestion,
+            cast_to=GetBlacklistQuestionRsp,
         )
 
 

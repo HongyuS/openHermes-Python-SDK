@@ -10,7 +10,7 @@ import pytest
 from openhermes import Openhermes, AsyncOpenhermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import ResponseData
-from openhermes.types.api.blacklist import GetBlacklistQuestion
+from openhermes.types.api.blacklist import GetBlacklistQuestionRsp
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -59,7 +59,7 @@ class TestAbuse:
     @parametrize
     def test_method_get(self, client: Openhermes) -> None:
         abuse = client.api.blacklist.abuse.get()
-        assert_matches_type(GetBlacklistQuestion, abuse, path=["response"])
+        assert_matches_type(GetBlacklistQuestionRsp, abuse, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -67,7 +67,7 @@ class TestAbuse:
         abuse = client.api.blacklist.abuse.get(
             page=0,
         )
-        assert_matches_type(GetBlacklistQuestion, abuse, path=["response"])
+        assert_matches_type(GetBlacklistQuestionRsp, abuse, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -77,7 +77,7 @@ class TestAbuse:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         abuse = response.parse()
-        assert_matches_type(GetBlacklistQuestion, abuse, path=["response"])
+        assert_matches_type(GetBlacklistQuestionRsp, abuse, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -87,7 +87,7 @@ class TestAbuse:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             abuse = response.parse()
-            assert_matches_type(GetBlacklistQuestion, abuse, path=["response"])
+            assert_matches_type(GetBlacklistQuestionRsp, abuse, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -138,7 +138,7 @@ class TestAsyncAbuse:
     @parametrize
     async def test_method_get(self, async_client: AsyncOpenhermes) -> None:
         abuse = await async_client.api.blacklist.abuse.get()
-        assert_matches_type(GetBlacklistQuestion, abuse, path=["response"])
+        assert_matches_type(GetBlacklistQuestionRsp, abuse, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -146,7 +146,7 @@ class TestAsyncAbuse:
         abuse = await async_client.api.blacklist.abuse.get(
             page=0,
         )
-        assert_matches_type(GetBlacklistQuestion, abuse, path=["response"])
+        assert_matches_type(GetBlacklistQuestionRsp, abuse, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +156,7 @@ class TestAsyncAbuse:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         abuse = await response.parse()
-        assert_matches_type(GetBlacklistQuestion, abuse, path=["response"])
+        assert_matches_type(GetBlacklistQuestionRsp, abuse, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -166,6 +166,6 @@ class TestAsyncAbuse:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             abuse = await response.parse()
-            assert_matches_type(GetBlacklistQuestion, abuse, path=["response"])
+            assert_matches_type(GetBlacklistQuestionRsp, abuse, path=["response"])
 
         assert cast(Any, response.is_closed) is True

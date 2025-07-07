@@ -9,7 +9,7 @@ import pytest
 
 from openhermes import Openhermes, AsyncOpenhermes
 from tests.utils import assert_matches_type
-from openhermes.types.api import AuthUser, AuthRedirectResponse
+from openhermes.types.api import AuthUserRsp, AuthRedirectResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -83,7 +83,7 @@ class TestAuth:
     @parametrize
     def test_method_retrieve_user(self, client: Openhermes) -> None:
         auth = client.api.auth.retrieve_user()
-        assert_matches_type(AuthUser, auth, path=["response"])
+        assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = response.parse()
-        assert_matches_type(AuthUser, auth, path=["response"])
+        assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -103,7 +103,7 @@ class TestAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = response.parse()
-            assert_matches_type(AuthUser, auth, path=["response"])
+            assert_matches_type(AuthUserRsp, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -111,7 +111,7 @@ class TestAuth:
     @parametrize
     def test_method_update_revision(self, client: Openhermes) -> None:
         auth = client.api.auth.update_revision()
-        assert_matches_type(AuthUser, auth, path=["response"])
+        assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -121,7 +121,7 @@ class TestAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = response.parse()
-        assert_matches_type(AuthUser, auth, path=["response"])
+        assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -131,7 +131,7 @@ class TestAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = response.parse()
-            assert_matches_type(AuthUser, auth, path=["response"])
+            assert_matches_type(AuthUserRsp, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -207,7 +207,7 @@ class TestAsyncAuth:
     @parametrize
     async def test_method_retrieve_user(self, async_client: AsyncOpenhermes) -> None:
         auth = await async_client.api.auth.retrieve_user()
-        assert_matches_type(AuthUser, auth, path=["response"])
+        assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -217,7 +217,7 @@ class TestAsyncAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = await response.parse()
-        assert_matches_type(AuthUser, auth, path=["response"])
+        assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -227,7 +227,7 @@ class TestAsyncAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = await response.parse()
-            assert_matches_type(AuthUser, auth, path=["response"])
+            assert_matches_type(AuthUserRsp, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -235,7 +235,7 @@ class TestAsyncAuth:
     @parametrize
     async def test_method_update_revision(self, async_client: AsyncOpenhermes) -> None:
         auth = await async_client.api.auth.update_revision()
-        assert_matches_type(AuthUser, auth, path=["response"])
+        assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -245,7 +245,7 @@ class TestAsyncAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = await response.parse()
-        assert_matches_type(AuthUser, auth, path=["response"])
+        assert_matches_type(AuthUserRsp, auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -255,6 +255,6 @@ class TestAsyncAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = await response.parse()
-            assert_matches_type(AuthUser, auth, path=["response"])
+            assert_matches_type(AuthUserRsp, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True

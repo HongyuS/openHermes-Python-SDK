@@ -11,10 +11,10 @@ from openhermes import Openhermes, AsyncOpenhermes
 from tests.utils import assert_matches_type
 from openhermes.types.api import (
     AppListResponse,
-    BaseAppOperation,
     AppDeleteResponse,
     AppRetrieveResponse,
-    AppListRecentResponse,
+    BaseAppOperationRsp,
+    AppGetRecentResponse,
     AppCreateOrUpdateResponse,
     AppModifyFavoriteResponse,
 )
@@ -224,37 +224,37 @@ class TestApp:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_recent(self, client: Openhermes) -> None:
-        app = client.api.app.list_recent()
-        assert_matches_type(AppListRecentResponse, app, path=["response"])
+    def test_method_get_recent(self, client: Openhermes) -> None:
+        app = client.api.app.get_recent()
+        assert_matches_type(AppGetRecentResponse, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_recent_with_all_params(self, client: Openhermes) -> None:
-        app = client.api.app.list_recent(
+    def test_method_get_recent_with_all_params(self, client: Openhermes) -> None:
+        app = client.api.app.get_recent(
             count=1,
         )
-        assert_matches_type(AppListRecentResponse, app, path=["response"])
+        assert_matches_type(AppGetRecentResponse, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_recent(self, client: Openhermes) -> None:
-        response = client.api.app.with_raw_response.list_recent()
+    def test_raw_response_get_recent(self, client: Openhermes) -> None:
+        response = client.api.app.with_raw_response.get_recent()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         app = response.parse()
-        assert_matches_type(AppListRecentResponse, app, path=["response"])
+        assert_matches_type(AppGetRecentResponse, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_recent(self, client: Openhermes) -> None:
-        with client.api.app.with_streaming_response.list_recent() as response:
+    def test_streaming_response_get_recent(self, client: Openhermes) -> None:
+        with client.api.app.with_streaming_response.get_recent() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             app = response.parse()
-            assert_matches_type(AppListRecentResponse, app, path=["response"])
+            assert_matches_type(AppGetRecentResponse, app, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -310,7 +310,7 @@ class TestApp:
         app = client.api.app.publish(
             "appId",
         )
-        assert_matches_type(BaseAppOperation, app, path=["response"])
+        assert_matches_type(BaseAppOperationRsp, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -322,7 +322,7 @@ class TestApp:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         app = response.parse()
-        assert_matches_type(BaseAppOperation, app, path=["response"])
+        assert_matches_type(BaseAppOperationRsp, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -334,7 +334,7 @@ class TestApp:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             app = response.parse()
-            assert_matches_type(BaseAppOperation, app, path=["response"])
+            assert_matches_type(BaseAppOperationRsp, app, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -551,37 +551,37 @@ class TestAsyncApp:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_recent(self, async_client: AsyncOpenhermes) -> None:
-        app = await async_client.api.app.list_recent()
-        assert_matches_type(AppListRecentResponse, app, path=["response"])
+    async def test_method_get_recent(self, async_client: AsyncOpenhermes) -> None:
+        app = await async_client.api.app.get_recent()
+        assert_matches_type(AppGetRecentResponse, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_recent_with_all_params(self, async_client: AsyncOpenhermes) -> None:
-        app = await async_client.api.app.list_recent(
+    async def test_method_get_recent_with_all_params(self, async_client: AsyncOpenhermes) -> None:
+        app = await async_client.api.app.get_recent(
             count=1,
         )
-        assert_matches_type(AppListRecentResponse, app, path=["response"])
+        assert_matches_type(AppGetRecentResponse, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_recent(self, async_client: AsyncOpenhermes) -> None:
-        response = await async_client.api.app.with_raw_response.list_recent()
+    async def test_raw_response_get_recent(self, async_client: AsyncOpenhermes) -> None:
+        response = await async_client.api.app.with_raw_response.get_recent()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         app = await response.parse()
-        assert_matches_type(AppListRecentResponse, app, path=["response"])
+        assert_matches_type(AppGetRecentResponse, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_recent(self, async_client: AsyncOpenhermes) -> None:
-        async with async_client.api.app.with_streaming_response.list_recent() as response:
+    async def test_streaming_response_get_recent(self, async_client: AsyncOpenhermes) -> None:
+        async with async_client.api.app.with_streaming_response.get_recent() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             app = await response.parse()
-            assert_matches_type(AppListRecentResponse, app, path=["response"])
+            assert_matches_type(AppGetRecentResponse, app, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -637,7 +637,7 @@ class TestAsyncApp:
         app = await async_client.api.app.publish(
             "appId",
         )
-        assert_matches_type(BaseAppOperation, app, path=["response"])
+        assert_matches_type(BaseAppOperationRsp, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -649,7 +649,7 @@ class TestAsyncApp:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         app = await response.parse()
-        assert_matches_type(BaseAppOperation, app, path=["response"])
+        assert_matches_type(BaseAppOperationRsp, app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -661,7 +661,7 @@ class TestAsyncApp:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             app = await response.parse()
-            assert_matches_type(BaseAppOperation, app, path=["response"])
+            assert_matches_type(BaseAppOperationRsp, app, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

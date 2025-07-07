@@ -19,7 +19,7 @@ from ..._response import (
 from ...types.api import (
     AppType,
     app_list_params,
-    app_list_recent_params,
+    app_get_recent_params,
     app_modify_favorite_params,
     app_create_or_update_params,
 )
@@ -27,11 +27,11 @@ from ..._base_client import make_request_options
 from ...types.api.app_type import AppType
 from ...types.api.app_link_param import AppLinkParam
 from ...types.api.app_list_response import AppListResponse
-from ...types.api.base_app_operation import BaseAppOperation
 from ...types.api.app_delete_response import AppDeleteResponse
 from ...types.api.app_flow_info_param import AppFlowInfoParam
 from ...types.api.app_retrieve_response import AppRetrieveResponse
-from ...types.api.app_list_recent_response import AppListRecentResponse
+from ...types.api.base_app_operation_rsp import BaseAppOperationRsp
+from ...types.api.app_get_recent_response import AppGetRecentResponse
 from ...types.api.app_permission_data_param import AppPermissionDataParam
 from ...types.api.app_modify_favorite_response import AppModifyFavoriteResponse
 from ...types.api.app_create_or_update_response import AppCreateOrUpdateResponse
@@ -46,7 +46,7 @@ class AppResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#accessing-raw-response-data-eg-headers
         """
         return AppResourceWithRawResponse(self)
 
@@ -55,7 +55,7 @@ class AppResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#with_streaming_response
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#with_streaming_response
         """
         return AppResourceWithStreamingResponse(self)
 
@@ -282,7 +282,7 @@ class AppResource(SyncAPIResource):
             ),
         )
 
-    def list_recent(
+    def get_recent(
         self,
         *,
         count: int | NotGiven = NOT_GIVEN,
@@ -292,7 +292,7 @@ class AppResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AppListRecentResponse:
+    ) -> AppGetRecentResponse:
         """
         获取最近使用的应用
 
@@ -306,7 +306,7 @@ class AppResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            AppListRecentResponse,
+            AppGetRecentResponse,
             self._get(
                 "/api/app/recent",
                 options=make_request_options(
@@ -314,10 +314,10 @@ class AppResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    query=maybe_transform({"count": count}, app_list_recent_params.AppListRecentParams),
+                    query=maybe_transform({"count": count}, app_get_recent_params.AppGetRecentParams),
                 ),
                 cast_to=cast(
-                    Any, AppListRecentResponse
+                    Any, AppGetRecentResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -376,7 +376,7 @@ class AppResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BaseAppOperation:
+    ) -> BaseAppOperationRsp:
         """
         发布应用
 
@@ -398,7 +398,7 @@ class AppResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BaseAppOperation,
+            cast_to=BaseAppOperationRsp,
         )
 
 
@@ -409,7 +409,7 @@ class AsyncAppResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#accessing-raw-response-data-eg-headers
         """
         return AsyncAppResourceWithRawResponse(self)
 
@@ -418,7 +418,7 @@ class AsyncAppResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/openhermes-python#with_streaming_response
+        For more information, see https://www.github.com/HongyuS/openHermes-Python-SDK#with_streaming_response
         """
         return AsyncAppResourceWithStreamingResponse(self)
 
@@ -645,7 +645,7 @@ class AsyncAppResource(AsyncAPIResource):
             ),
         )
 
-    async def list_recent(
+    async def get_recent(
         self,
         *,
         count: int | NotGiven = NOT_GIVEN,
@@ -655,7 +655,7 @@ class AsyncAppResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AppListRecentResponse:
+    ) -> AppGetRecentResponse:
         """
         获取最近使用的应用
 
@@ -669,7 +669,7 @@ class AsyncAppResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            AppListRecentResponse,
+            AppGetRecentResponse,
             await self._get(
                 "/api/app/recent",
                 options=make_request_options(
@@ -677,10 +677,10 @@ class AsyncAppResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    query=await async_maybe_transform({"count": count}, app_list_recent_params.AppListRecentParams),
+                    query=await async_maybe_transform({"count": count}, app_get_recent_params.AppGetRecentParams),
                 ),
                 cast_to=cast(
-                    Any, AppListRecentResponse
+                    Any, AppGetRecentResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -741,7 +741,7 @@ class AsyncAppResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BaseAppOperation:
+    ) -> BaseAppOperationRsp:
         """
         发布应用
 
@@ -763,7 +763,7 @@ class AsyncAppResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BaseAppOperation,
+            cast_to=BaseAppOperationRsp,
         )
 
 
@@ -783,8 +783,8 @@ class AppResourceWithRawResponse:
         self.create_or_update = to_raw_response_wrapper(
             app.create_or_update,
         )
-        self.list_recent = to_raw_response_wrapper(
-            app.list_recent,
+        self.get_recent = to_raw_response_wrapper(
+            app.get_recent,
         )
         self.modify_favorite = to_raw_response_wrapper(
             app.modify_favorite,
@@ -810,8 +810,8 @@ class AsyncAppResourceWithRawResponse:
         self.create_or_update = async_to_raw_response_wrapper(
             app.create_or_update,
         )
-        self.list_recent = async_to_raw_response_wrapper(
-            app.list_recent,
+        self.get_recent = async_to_raw_response_wrapper(
+            app.get_recent,
         )
         self.modify_favorite = async_to_raw_response_wrapper(
             app.modify_favorite,
@@ -837,8 +837,8 @@ class AppResourceWithStreamingResponse:
         self.create_or_update = to_streamed_response_wrapper(
             app.create_or_update,
         )
-        self.list_recent = to_streamed_response_wrapper(
-            app.list_recent,
+        self.get_recent = to_streamed_response_wrapper(
+            app.get_recent,
         )
         self.modify_favorite = to_streamed_response_wrapper(
             app.modify_favorite,
@@ -864,8 +864,8 @@ class AsyncAppResourceWithStreamingResponse:
         self.create_or_update = async_to_streamed_response_wrapper(
             app.create_or_update,
         )
-        self.list_recent = async_to_streamed_response_wrapper(
-            app.list_recent,
+        self.get_recent = async_to_streamed_response_wrapper(
+            app.get_recent,
         )
         self.modify_favorite = async_to_streamed_response_wrapper(
             app.modify_favorite,

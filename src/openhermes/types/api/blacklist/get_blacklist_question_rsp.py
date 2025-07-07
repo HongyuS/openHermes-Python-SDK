@@ -6,7 +6,7 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["GetBlacklistQuestion", "Result", "ResultQuestionList"]
+__all__ = ["GetBlacklistQuestionRsp", "Result", "ResultQuestionList"]
 
 
 class ResultQuestionList(BaseModel):
@@ -29,7 +29,7 @@ class Result(BaseModel):
     question_list: List[ResultQuestionList]
 
 
-class GetBlacklistQuestion(BaseModel):
+class GetBlacklistQuestionRsp(BaseModel):
     code: int
 
     message: str
