@@ -172,7 +172,7 @@ class TestApp:
             links=[
                 {
                     "title": "title",
-                    "url": "http://JS!?Q",
+                    "url": 'http://S?oC"',
                 }
             ],
             mcp_service=["string"],
@@ -499,7 +499,7 @@ class TestAsyncApp:
             links=[
                 {
                     "title": "title",
-                    "url": "http://JS!?Q",
+                    "url": 'http://S?oC"',
                 }
             ],
             mcp_service=["string"],
