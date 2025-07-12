@@ -1,6 +1,7 @@
 # OpenHermes Python API library
 
-[![PyPI version](<https://img.shields.io/pypi/v/openhermes.svg?label=pypi%20(stable)>)](https://pypi.org/project/openhermes/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/openhermes.svg?label=pypi%20(stable))](https://pypi.org/project/openhermes/)
 
 The OpenHermes Python library provides convenient access to the OpenHermes REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
